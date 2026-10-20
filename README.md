@@ -21,7 +21,7 @@ decisions and action items — **transcribed on your own device**, with no accou
 | **Library** | Search titles *and* transcripts, sort, status filter, **pins**, **collections**, and a **Needs attention** queue (failed uploads, interrupted captures) |
 | **Notes** | Summary, **chapters**, takeaways, decisions and tasks where each statement links to the **audio second** it came from; fully editable; copy, Markdown, **PDF** (print dialog), **Word (.doc)** |
 | **Ask** | Without an account: finds the passages of your transcripts that match your words, with the time they were said (no AI, nothing sent anywhere). With an account: AI answers that cite passages and say *"I couldn't find that"* when evidence is missing |
-| **Sharing** | Expiring (1/7/30 days), revocable, read-only **links to a notes snapshot** (never audio or transcript) |
+| **Sharing** | Expiring (1/7/30 days), revocable, read-only **links to a notes snapshot** (never audio or transcript); works for notes made on the device |
 | **Trust center** | Where recordings live, consent switches, a log of what was sent to which provider, retention, one-click deletion |
 | **Sign-in** | **Access codes** (no sign-up, one device per code, name + email collected on a device's first login) or email + password |
 
@@ -56,6 +56,20 @@ A guaranteed screen-off recorder needs a native iOS/Android app with OS backgrou
 That is deliberately out of scope for this project.
 
 ---
+
+## Current beta setup
+
+- **Repository:** this repo (`main` = source). The GitHub Pages site is published from its `gh-pages` branch at
+  <https://chihenson13-del.github.io/noteai/>. A second copy runs on its own Vercel project, `noteai-chihenson13`.
+- **Access:** `VITE_REQUIRE_LOGIN=true` shows only the access-code screen until a code was used on the device; the privacy notice
+  (`/privacy`) is public. Each of the 100 codes works on one device and asks for a name and email the first time.
+- **Backend (Supabase):** access-code sign-in (`redeem-code`), share links for notes made on the device (`share-notes`,
+  `shared-notes`) and `delete-account`. Cloud transcription / cloud Ask need `process-recording` and `ask-recordings` plus provider
+  keys, and stay hidden until `VITE_CLOUD_AI=true`.
+- **Edge Functions without the CLI:** `node scripts/bundle-functions.mjs` writes one self-contained file per function to `edge-bundles/`
+  (paste into Supabase → Edge Functions → editor; turn "Verify JWT" off for each).
+- **Publishing:** `npm run build` (Vercel, base `/`) and `npm run build:pages` (GitHub Pages, base `/noteai/`), then copy the output to
+  the host. Both need the `VITE_*` values from `.env.example` in `.env.local`.
 
 ## Run it locally
 
