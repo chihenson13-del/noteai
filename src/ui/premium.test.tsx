@@ -199,7 +199,8 @@ describe('Trust center', () => {
     );
     expect(screen.getByText('only on this device').previousSibling).toHaveTextContent('2');
     expect(screen.getByText(/no cloud backend, so every recording stays in your browser/i)).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: /delete all cloud audio/i })).toBeDisabled();
+    // Without cloud processing there is never any cloud audio, so the button is not offered at all.
+    expect(screen.queryByRole('button', { name: /delete all cloud audio/i })).not.toBeInTheDocument();
   });
 
   it('lets the user turn off the per-recording consent reminder', async () => {

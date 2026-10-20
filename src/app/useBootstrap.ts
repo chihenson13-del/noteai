@@ -64,21 +64,29 @@ export function useBootstrap(): void {
   }, []);
 
   useEffect(() => {
-    if (!backend || !userId || !settingsLoaded) return;
+    if (!settingsLoaded) return;
     let cancelled = false;
     (async () => {
+      const signedIn = !!backend && !!userId;
       try {
-        await syncFromCloud(localStore, backend, (id) => pipeline?.isRunning(id) ?? false);
-        if (cancelled) return;
-        await useLibraryStore.getState().load();
-        await pipeline?.resume(useLibraryStore.getState().recordings);
-        const retentionDays = useSettingsStore.getState().settings.audioRetentionDays;
-        if (retentionDays !== null) {
-          const result = await applyAudioRetention(localStore, backend, retentionDays);
-          if (result.localDeleted + result.cloudDeleted > 0) await useLibraryStore.getState().load();
+        if (backend && userId) {
+          await syncFromCloud(localStore, backend, (id) => pipeline?.isRunning(id) ?? false);
+          if (cancelled) return;
+          await useLibraryStore.getState().load();
+          await pipeline?.resume(useLibraryStore.getState().recordings);
         }
       } catch {
         // Offline or backend hiccup: the local library keeps working; sync retries on next load.
+      }
+      try {
+        // The retention setting must work without an account too: then it only affects audio stored on this device.
+        const retentionDays = useSettingsStore.getState().settings.audioRetentionDays;
+        if (retentionDays !== null && !cancelled) {
+          const result = await applyAudioRetention(localStore, signedIn ? backend : null, retentionDays);
+          if (result.localDeleted + result.cloudDeleted > 0) await useLibraryStore.getState().load();
+        }
+      } catch {
+        // Storage hiccup: tried again on the next load.
       }
     })();
     return () => {

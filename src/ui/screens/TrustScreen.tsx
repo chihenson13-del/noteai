@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { useEffect, useMemo, useState } from 'react';
 import { Trash2 } from 'lucide-react';
 import { backend } from '../../app/backend';
@@ -58,7 +59,7 @@ export function TrustScreen() {
   const cloudAudio = recordings.filter((r) => r.remotePath !== null);
 
   useEffect(() => {
-    if (!backend || !user) {
+    if (!backend || !user || !env.cloudAi) {
       setTransfers(null);
       return;
     }
@@ -118,8 +119,8 @@ export function TrustScreen() {
           <div className="stat-label">only on this device</div>
         </div>
         <div className="stat">
-          <div className="stat-number">{backend ? inCloud : 0}</div>
-          <div className="stat-label">{backend ? 'in your private cloud' : 'cloud not configured'}</div>
+          <div className="stat-number">{backend && env.cloudAi ? inCloud : 0}</div>
+          <div className="stat-label">{backend && env.cloudAi ? 'in your private cloud' : 'audio files uploaded'}</div>
         </div>
       </section>
 
@@ -154,6 +155,16 @@ export function TrustScreen() {
           <p className="muted">
             Nothing. This deployment has no cloud backend, so every recording stays in your browser, and transcription runs on this device.
           </p>
+        ) : !env.cloudAi ? (
+          <div className="stack" style={{ gap: 8 }}>
+            <p className="muted">
+              Your audio and transcripts never leave this device. The server only receives your name and email (once per device, the first time an
+              access code is used) and, only when you create a share link, a snapshot of that recording’s notes.
+            </p>
+            <p className="small">
+              <Link to="/privacy">Read the full privacy notice</Link>
+            </p>
+          </div>
         ) : !user ? (
           <p className="muted">Sign in to see the activity log for your account.</p>
         ) : transferError ? (
@@ -178,7 +189,7 @@ export function TrustScreen() {
             ))}
           </ul>
         )}
-        {backend && (
+        {backend && env.cloudAi && (
           <p className="tiny muted">
             Cloud transcription and notes are done by third-party AI providers chosen by this app’s operator. Share links expose a notes
             snapshot only, never audio. Transcribing on this device sends nothing anywhere.
@@ -214,9 +225,11 @@ export function TrustScreen() {
       <Card className="stack">
         <h2 className="h2">Delete data</h2>
         <div className="row-wrap">
-          <Button variant="danger-soft" size="sm" icon={<Trash2 />} disabled={!backend || cloudAudio.length === 0} onClick={() => setConfirm('cloud-audio')}>
-            Delete all cloud audio
-          </Button>
+          {env.cloudAi && (
+            <Button variant="danger-soft" size="sm" icon={<Trash2 />} disabled={!backend || cloudAudio.length === 0} onClick={() => setConfirm('cloud-audio')}>
+              Delete all cloud audio
+            </Button>
+          )}
           <Button variant="danger-soft" size="sm" icon={<Trash2 />} onClick={() => setConfirm('local-data')}>
             Wipe this device
           </Button>
@@ -278,8 +291,9 @@ export function TrustScreen() {
           }
         >
           <p className="muted">
-            This permanently deletes your account, every cloud recording, transcript, note, share link and audio file. Data on this
-            device is kept until you wipe it separately.
+            {env.cloudAi
+              ? 'This permanently deletes your account, every cloud recording, transcript, note, share link and audio file. Data on this device is kept until you wipe it separately.'
+              : 'This deletes your sign-in record on the server and every share link you made, so those links stop working. Recordings and notes on this device are kept until you wipe it separately. Your access code stays tied to this device.'}
           </p>
           <div className="field">
             <label className="label" htmlFor="delete-confirm">

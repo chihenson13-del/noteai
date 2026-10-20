@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { z } from 'zod';
 import { Cloud, KeyRound } from 'lucide-react';
 import { backend } from '../../app/backend';
@@ -231,7 +231,7 @@ export function AuthScreen() {
               <>
                 <Banner tone="info" title="First time on this device">
                   We ask for your name and email once per device, so we know who is using this code. They are stored with the code
-                  and are not used to sign you in.
+                  and are not used to sign you in. <Link to="/privacy">Read exactly what is stored</Link>.
                 </Banner>
                 <div className="field">
                   <label className="label" htmlFor="auth-fullname">

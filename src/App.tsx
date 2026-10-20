@@ -16,6 +16,7 @@ const SettingsScreen = lazy(() => import('./ui/screens/SettingsScreen').then((m)
 const AuthScreen = lazy(() => import('./ui/screens/AuthScreen').then((m) => ({ default: m.AuthScreen })));
 const AskScreen = lazy(() => import('./ui/screens/AskScreen').then((m) => ({ default: m.AskScreen })));
 const TrustScreen = lazy(() => import('./ui/screens/TrustScreen').then((m) => ({ default: m.TrustScreen })));
+const PrivacyScreen = lazy(() => import('./ui/screens/PrivacyScreen').then((m) => ({ default: m.PrivacyScreen })));
 const SharedNotesScreen = lazy(() => import('./ui/screens/SharedNotesScreen').then((m) => ({ default: m.SharedNotesScreen })));
 
 function Routed() {
@@ -33,6 +34,15 @@ function Routed() {
         element={
           <Suspense fallback={null}>
             <SharedNotesScreen />
+          </Suspense>
+        }
+      />
+      {/* Public: readable before signing in. */}
+      <Route
+        path="privacy"
+        element={
+          <Suspense fallback={null}>
+            <PrivacyScreen />
           </Suspense>
         }
       />

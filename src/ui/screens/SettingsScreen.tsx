@@ -372,14 +372,14 @@ export function SettingsScreen() {
                 Privacy policy <ExternalLink aria-hidden />
               </a>
             ) : (
-              <span className="badge">Privacy policy: not configured</span>
+              <LinkButton to="/privacy" variant="secondary" size="sm">
+                Privacy &amp; terms
+              </LinkButton>
             )}
-            {env.termsUrl ? (
+            {env.termsUrl && (
               <a className="btn btn--secondary btn--sm" href={env.termsUrl} target="_blank" rel="noopener noreferrer">
                 Terms of service <ExternalLink aria-hidden />
               </a>
-            ) : (
-              <span className="badge">Terms: not configured</span>
             )}
           </div>
         </div>
