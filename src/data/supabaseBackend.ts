@@ -14,7 +14,7 @@ import type {
   TranscriptSegment,
 } from '../domain/types';
 import { AppError } from '../lib/errors';
-import type { AskRequest, AskResponse, CloudBackend, CloudUser, ProcessOptions, ProcessStageRequest } from './backend';
+import type { AdminCode, AskRequest, AskResponse, CloudBackend, CloudUser, ProcessOptions, ProcessStageRequest } from './backend';
 
 const BUCKET = 'recordings';
 
@@ -464,6 +464,29 @@ export function createSupabaseBackend(url: string, anonKey: string): CloudBacken
         })),
       );
       if (error) throw toAppError(error, 'Could not save action items.');
+    },
+
+    async adminWhoAmI() {
+      const result = await invoke<{ admin: boolean }>('admin-codes', { action: 'whoami' });
+      return result.admin === true;
+    },
+
+    async adminListCodes() {
+      const result = await invoke<{ codes: AdminCode[] }>('admin-codes', { action: 'list' });
+      return result.codes;
+    },
+
+    async adminSetRevoked(codeId, revoked) {
+      await invoke('admin-codes', { action: revoked ? 'revoke' : 'restore', codeId });
+    },
+
+    async adminReleaseDevice(codeId, deviceHash) {
+      await invoke('admin-codes', { action: 'release_device', codeId, deviceHash });
+    },
+
+    async adminCreateCodes(count, label) {
+      const result = await invoke<{ codes: string[] }>('admin-codes', { action: 'create', count, label });
+      return result.codes;
     },
 
     async askRecordings(request: AskRequest) {

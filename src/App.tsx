@@ -16,6 +16,7 @@ const SettingsScreen = lazy(() => import('./ui/screens/SettingsScreen').then((m)
 const AuthScreen = lazy(() => import('./ui/screens/AuthScreen').then((m) => ({ default: m.AuthScreen })));
 const AskScreen = lazy(() => import('./ui/screens/AskScreen').then((m) => ({ default: m.AskScreen })));
 const TrustScreen = lazy(() => import('./ui/screens/TrustScreen').then((m) => ({ default: m.TrustScreen })));
+const AdminScreen = lazy(() => import('./ui/screens/AdminScreen').then((m) => ({ default: m.AdminScreen })));
 const PrivacyScreen = lazy(() => import('./ui/screens/PrivacyScreen').then((m) => ({ default: m.PrivacyScreen })));
 const SharedNotesScreen = lazy(() => import('./ui/screens/SharedNotesScreen').then((m) => ({ default: m.SharedNotesScreen })));
 
@@ -61,6 +62,7 @@ function Routed() {
         <Route path="ask" element={<AskScreen />} />
         <Route path="trust" element={<TrustScreen />} />
         <Route path="settings" element={<SettingsScreen />} />
+        <Route path="admin" element={<AdminScreen />} />
         <Route path="auth" element={<AuthScreen />} />
         <Route path="*" element={<NotFoundScreen />} />
       </Route>

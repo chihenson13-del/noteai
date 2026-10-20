@@ -35,6 +35,30 @@ export interface ProcessOptions {
   extractDecisions: boolean;
 }
 
+/** One device that activated an access code (admin view). `deviceHash` identifies it for "free device". */
+export interface AdminDevice {
+  deviceHash: string;
+  label: string | null;
+  fullName: string | null;
+  contactEmail: string | null;
+  firstSeenAt: string;
+  lastSeenAt: string;
+}
+
+export interface AdminCode {
+  id: string;
+  label: string | null;
+  status: 'unused' | 'in_use' | 'revoked';
+  isAdmin: boolean;
+  maxDevices: number;
+  ownerName: string | null;
+  ownerEmail: string | null;
+  activatedAt: string | null;
+  lastUsedAt: string | null;
+  createdAt: string;
+  devices: AdminDevice[];
+}
+
 /** What is sent to the server to create a share link for notes that only exist on this device. */
 export interface DeviceShareInput {
   title: string;
@@ -146,4 +170,12 @@ export interface CloudBackend {
   deleteRecording(recordingId: string, storagePath: string | null): Promise<void>;
   /** Deletes the account, all rows and all stored audio (server side). */
   deleteAccount(): Promise<void>;
+
+  // Admin tools: the server only answers a user who signed in with an admin code.
+  adminWhoAmI?(): Promise<boolean>;
+  adminListCodes?(): Promise<AdminCode[]>;
+  adminSetRevoked?(codeId: string, revoked: boolean): Promise<void>;
+  adminReleaseDevice?(codeId: string, deviceHash: string): Promise<void>;
+  /** Returns the new plain codes. They are never stored or shown again. */
+  adminCreateCodes?(count: number, label: string): Promise<string[]>;
 }

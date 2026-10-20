@@ -11,6 +11,8 @@ interface AuthState {
   user: CloudUser | null;
   /** True after the user followed a password-reset email link and must choose a new password. */
   recovering: boolean;
+  /** Signed in with an admin code (confirmed by the server). */
+  isAdmin: boolean;
   init(): void;
   signIn(email: string, password: string): Promise<void>;
   signUp(email: string, password: string): Promise<{ needsEmailConfirmation: boolean }>;
@@ -22,25 +24,42 @@ interface AuthState {
 
 let started = false;
 
+/** Asks the server whether this user holds an admin code. Never throws: failing means "not an admin". */
+async function checkAdmin(user: CloudUser | null): Promise<boolean> {
+  if (!backend?.adminWhoAmI || !user?.viaCode) return false;
+  try {
+    return await backend.adminWhoAmI();
+  } catch {
+    return false;
+  }
+}
+
 export const useAuthStore = create<AuthState>((set) => ({
   status: backend ? 'loading' : 'disabled',
   user: null,
   recovering: false,
+  isAdmin: false,
 
   init() {
     if (started || !backend) return;
     started = true;
     backend
       .getUser()
-      .then((user) => set({ user, status: user ? 'signedIn' : 'signedOut' }))
+      .then((user) => {
+        set({ user, status: user ? 'signedIn' : 'signedOut' });
+        void checkAdmin(user).then((isAdmin) => set({ isAdmin }));
+      })
       .catch(() => set({ user: null, status: 'signedOut' }));
-    backend.onAuthChange((user, event) =>
+    backend.onAuthChange((user, event) => {
       set((state) => ({
         user,
         status: user ? 'signedIn' : 'signedOut',
         recovering: event === 'PASSWORD_RECOVERY' ? true : user ? state.recovering : false,
-      })),
-    );
+        isAdmin: user ? state.isAdmin : false,
+      }));
+      // Not awaited inside the auth callback: the admin check itself calls the auth client.
+      if (user) setTimeout(() => void checkAdmin(user).then((isAdmin) => set({ isAdmin })), 0);
+    });
   },
 
   async signIn(email, password) {

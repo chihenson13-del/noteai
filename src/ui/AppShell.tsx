@@ -1,9 +1,10 @@
 import { Suspense, useEffect } from 'react';
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom';
-import { Home, Library, MessageCircle, Mic, Settings, ShieldCheck } from 'lucide-react';
+import { Home, KeyRound, Library, MessageCircle, Mic, Settings, ShieldCheck } from 'lucide-react';
 import { isSessionLive } from '../domain/recordingMachine';
 import { formatDuration } from '../lib/format';
 import { ScreenWakeLock } from '../recording/wakeLock';
+import { useAuthStore } from '../state/authStore';
 import { useSettingsStore } from '../state/settingsStore';
 import { useWakeLockStore } from '../state/wakeLockStore';
 import { Toasts } from './components/Toasts';
@@ -20,6 +21,8 @@ interface NavEntry {
   sidebarOnly?: boolean;
   /** The raised centre button on the mobile bar. */
   primary?: boolean;
+  /** Only shown after signing in with an admin code. */
+  adminOnly?: boolean;
 }
 
 const NAV: NavEntry[] = [
@@ -29,6 +32,7 @@ const NAV: NavEntry[] = [
   { to: '/ask', label: 'Ask', icon: MessageCircle, end: false },
   { to: '/settings', label: 'Settings', icon: Settings, end: false },
   { to: '/trust', label: 'Trust center', icon: ShieldCheck, end: false, sidebarOnly: true },
+  { to: '/admin', label: 'Admin', icon: KeyRound, end: false, sidebarOnly: true, adminOnly: true },
 ];
 
 /**
@@ -123,6 +127,8 @@ function MiniRecorder() {
 }
 
 export function AppShell() {
+  const isAdmin = useAuthStore((s) => s.isAdmin);
+  const sidebarNav = NAV.filter((entry) => !entry.adminOnly || isAdmin);
   return (
     <div className="app">
       <aside className="sidebar" aria-label="Primary">
@@ -132,7 +138,7 @@ export function AppShell() {
           </span>
           NoteAI
         </Link>
-        {NAV.map(({ to, label, icon: Icon, end }) => (
+        {sidebarNav.map(({ to, label, icon: Icon, end }) => (
           <NavLink key={to} to={to} end={end} className="nav-link">
             <Icon aria-hidden />
             {label}
@@ -157,7 +163,7 @@ export function AppShell() {
       </main>
 
       <nav className="tabbar" aria-label="Primary">
-        {NAV.filter((entry) => !entry.sidebarOnly).map(({ to, label, icon: Icon, end, primary }) => (
+        {NAV.filter((entry) => !entry.sidebarOnly && !entry.adminOnly).map(({ to, label, icon: Icon, end, primary }) => (
           <NavLink
             key={to}
             to={to}

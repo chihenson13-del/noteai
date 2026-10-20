@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { ExternalLink, LogOut, ShieldCheck } from 'lucide-react';
+import { ExternalLink, KeyRound, LogOut, ShieldCheck } from 'lucide-react';
 import { backend } from '../../app/backend';
 import { localStore } from '../../app/localStore';
 import { env } from '../../config/env';
@@ -128,6 +128,7 @@ export function SettingsScreen() {
   const authStatus = useAuthStore((s) => s.status);
   const signOut = useAuthStore((s) => s.signOut);
   const recovering = useAuthStore((s) => s.recovering);
+  const isAdmin = useAuthStore((s) => s.isAdmin);
 
   const [storage, setStorage] = useState<StorageNumbers | null>(null);
   const [modelFiles, setModelFiles] = useState<number | null>(null);
@@ -350,6 +351,14 @@ export function SettingsScreen() {
           </div>
         )}
       </Section>
+
+      {isAdmin && (
+        <Section title="Admin" description="You are signed in with an admin code.">
+          <LinkButton to="/admin" variant="secondary" icon={<KeyRound />}>
+            Manage access codes
+          </LinkButton>
+        </Section>
+      )}
 
       <Section title="Privacy & data" description="Consent, the activity log, retention and deletion all live in one place.">
         <LinkButton to="/trust" variant="secondary" icon={<ShieldCheck />}>
