@@ -14,7 +14,16 @@ import type {
   TranscriptSegment,
 } from '../domain/types';
 import { AppError } from '../lib/errors';
-import type { AdminCode, AskRequest, AskResponse, CloudBackend, CloudUser, ProcessOptions, ProcessStageRequest } from './backend';
+import type {
+  AdminCode,
+  AskRequest,
+  AskResponse,
+  CloudBackend,
+  CloudUser,
+  DeviceProfileInput,
+  ProcessOptions,
+  ProcessStageRequest,
+} from './backend';
 
 const BUCKET = 'recordings';
 
@@ -140,9 +149,32 @@ function toAppError(error: { message?: string; name?: string; status?: number } 
   return new AppError('PROCESSING_FAILED', message, { cause: error, retryable: true });
 }
 
+/**
+ * Auth operations are serialised with the browser's Web Locks so two tabs do not refresh a session at once. The default
+ * implementation WAITS behind whichever tab holds the lock, and a stuck tab (common on phones with many tabs open) then makes
+ * sign-in fail without ever contacting the server. This version takes the lock when it is free and otherwise just runs.
+ */
+export async function authLock<R>(name: string, _acquireTimeout: number, fn: () => Promise<R>): Promise<R> {
+  const locks = typeof navigator !== 'undefined' ? navigator.locks : undefined;
+  if (!locks || typeof locks.request !== 'function') return fn();
+  let outcome: { value: R } | null = null;
+  const held = await locks.request(name, { mode: 'exclusive', ifAvailable: true }, async (lock) => {
+    if (!lock) return false;
+    outcome = { value: await fn() };
+    return true;
+  });
+  return held && outcome ? (outcome as { value: R }).value : fn();
+}
+
+/** A short, secret-free description of an auth failure for the screen. */
+export function describeAuthFailure(error: { name?: string; message?: string; status?: number }): string {
+  const text = `${error.name ?? 'Error'}${error.status ? ` ${error.status}` : ''}: ${error.message ?? ''}`.replace(/\s+/g, ' ').trim();
+  return text.slice(0, 140);
+}
+
 export function createSupabaseBackend(url: string, anonKey: string): CloudBackend {
   const client: SupabaseClient = createClient(url, anonKey, {
-    auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true },
+    auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true, lock: authLock },
   });
 
   const mapUser = (
@@ -185,23 +217,8 @@ export function createSupabaseBackend(url: string, anonKey: string): CloudBacken
     throw new AppError('PROCESSING_FAILED', message, { cause: error, retryable: (status ?? 500) >= 500 });
   }
 
-  return {
-    async getUser() {
-      const { data } = await client.auth.getSession();
-      return mapUser(data.session?.user);
-    },
-
-    onAuthChange(listener) {
-      const { data } = client.auth.onAuthStateChange((event, session) => listener(mapUser(session?.user), event));
-      return () => data.subscription.unsubscribe();
-    },
-
-    async signIn(email, password) {
-      const { error } = await client.auth.signInWithPassword({ email, password });
-      if (error) throw new AppError('AUTH_REQUIRED', error.message, { cause: error });
-    },
-
-    async signInWithCode(code, device, profile) {
+  /** Asks the server to check the code (and this device) and returns its one-time sign-in token. */
+  async function redeemToken(code: string, device: { id: string; label: string }, profile?: DeviceProfileInput): Promise<string> {
       const { data, error } = await client.functions.invoke('redeem-code', {
         body: {
           code,
@@ -234,8 +251,38 @@ export function createSupabaseBackend(url: string, anonKey: string): CloudBacken
       }
       const tokenHash = (data as { tokenHash?: unknown } | null)?.tokenHash;
       if (typeof tokenHash !== 'string') throw new AppError('AUTH_REQUIRED', 'The server did not return a session. Please try again.');
-      const { error: verifyError } = await client.auth.verifyOtp({ token_hash: tokenHash, type: 'magiclink' });
-      if (verifyError) throw new AppError('AUTH_REQUIRED', 'Could not start your session. Please try again.', { cause: verifyError });
+    return tokenHash;
+  }
+
+  return {
+    async getUser() {
+      const { data } = await client.auth.getSession();
+      return mapUser(data.session?.user);
+    },
+
+    onAuthChange(listener) {
+      const { data } = client.auth.onAuthStateChange((event, session) => listener(mapUser(session?.user), event));
+      return () => data.subscription.unsubscribe();
+    },
+
+    async signIn(email, password) {
+      const { error } = await client.auth.signInWithPassword({ email, password });
+      if (error) throw new AppError('AUTH_REQUIRED', error.message, { cause: error });
+    },
+
+    async signInWithCode(code, device, profile) {
+      // The server's sign-in token is single use, so a failed second step is retried once with a fresh token.
+      let { error: verifyError } = await client.auth.verifyOtp({ token_hash: await redeemToken(code, device, profile), type: 'magiclink' });
+      if (verifyError) {
+        ({ error: verifyError } = await client.auth.verifyOtp({ token_hash: await redeemToken(code, device, profile), type: 'magiclink' }));
+      }
+      if (verifyError) {
+        throw new AppError(
+          'AUTH_REQUIRED',
+          `Could not start your session (${describeAuthFailure(verifyError)}). Close other NoteAI tabs, reload the page and try again.`,
+          { cause: verifyError },
+        );
+      }
     },
 
     async signUp(email, password) {
