@@ -2,7 +2,8 @@
 /**
  * Generates NoteAI access codes.
  *
- *   node scripts/generate-codes.mjs                 # 100 codes, one device each
+ *   node scripts/generate-codes.mjs                 # 100 four-digit codes, one device each
+ *   node scripts/generate-codes.mjs --long          # 16-character codes instead
  *   node scripts/generate-codes.mjs --count 50 --devices 2 --prefix "Team A"
  *
  * Writes:
@@ -48,16 +49,26 @@ export function generateCode(random = (n) => randomBytes(n)) {
   return code;
 }
 
+/** A random 4-digit member code, 1000-9999. Mirrors generateShortCode in accessCode.ts. */
+export function generateShortCode(random = (n) => randomBytes(n)) {
+  for (;;) {
+    const bytes = random(2);
+    const value = (bytes[0] ?? 0) * 256 + (bytes[1] ?? 0);
+    if (value < 63000) return String(1000 + (value % 9000));
+  }
+}
+
 export function hashCode(code) {
   return createHash('sha256').update(`noteai-code:v1:${normalizeCode(code)}`).digest('hex');
 }
 
 /** @returns {{ number: number, label: string, code: string, hash: string }[]} */
-export function generateBatch({ count, prefix, random }) {
+export function generateBatch({ count, prefix, random, long = false }) {
+  if (!long && count > 9000) throw new Error('There are only 9000 four-digit codes; use --long for more.');
   const seen = new Set();
   const rows = [];
   while (rows.length < count) {
-    const code = generateCode(random);
+    const code = long ? generateCode(random) : generateShortCode(random);
     if (seen.has(code)) continue; // astronomically unlikely, but never emit duplicates
     seen.add(code);
     const number = rows.length + 1;
@@ -81,7 +92,7 @@ export function buildSeedSql(rows, maxDevices) {
 }
 
 function parseArgs(argv) {
-  const options = { count: 100, devices: 1, prefix: 'Code', force: false, out: 'codes' };
+  const options = { count: 100, devices: 1, prefix: 'Code', force: false, out: 'codes', long: false };
   for (let i = 0; i < argv.length; i += 1) {
     const arg = argv[i];
     const next = () => argv[++i];
@@ -90,6 +101,7 @@ function parseArgs(argv) {
     else if (arg === '--prefix') options.prefix = String(next());
     else if (arg === '--out') options.out = String(next());
     else if (arg === '--force') options.force = true;
+    else if (arg === '--long') options.long = true;
     else throw new Error(`Unknown option: ${arg}`);
   }
   if (!Number.isInteger(options.count) || options.count < 1 || options.count > 5000) throw new Error('--count must be 1..5000');
@@ -113,7 +125,7 @@ function main() {
     process.exit(1);
   }
 
-  const rows = generateBatch({ count: options.count, prefix: options.prefix });
+  const rows = generateBatch({ count: options.count, prefix: options.prefix, long: options.long });
   mkdirSync(outDir, { recursive: true });
   mkdirSync(dirname(sqlPath), { recursive: true });
 

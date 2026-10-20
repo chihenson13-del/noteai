@@ -9,6 +9,7 @@ import {
   formatCode,
   formatCodeInput,
   generateCode,
+  generateShortCode,
   hashCode,
   hashDeviceId,
   isCodeUserEmail,
@@ -43,6 +44,33 @@ describe('access code format', () => {
     expect(isWellFormedCode('0123456789ABCDEFG')).toBe(false);
     expect(isWellFormedCode('0123456789ABCDEU')).toBe(false); // U is not in the alphabet
     expect(isWellFormedCode(normalizeCode('0123-4567-89ab-cdef'))).toBe(true);
+  });
+});
+
+describe('4-digit member codes', () => {
+  it('accepts exactly four digits (and the long form)', () => {
+    expect(isWellFormedCode('4821')).toBe(true);
+    expect(isWellFormedCode('482')).toBe(false);
+    expect(isWellFormedCode('48211')).toBe(false);
+    expect(isWellFormedCode('48A1')).toBe(false);
+    expect(isWellFormedCode(normalizeCode('48-21'))).toBe(true);
+    expect(formatCodeInput('4821')).toBe('4821');
+  });
+
+  it('generates 1000-9999 evenly, and every one is well formed', () => {
+    const seen = new Set<string>();
+    for (let i = 0; i < 20000; i += 1) {
+      const code = generateShortCode();
+      expect(code).toMatch(/^[1-9][0-9]{3}$/);
+      expect(isWellFormedCode(code)).toBe(true);
+      seen.add(code);
+    }
+    expect(seen.size).toBeGreaterThan(8000);
+  });
+
+  it('rejects the biased tail of the byte range', () => {
+    const bytes = [Uint8Array.of(255, 255), Uint8Array.of(0, 0)];
+    expect(generateShortCode(() => bytes.shift()!)).toBe('1000');
   });
 });
 
@@ -91,12 +119,14 @@ describe('hashing', () => {
   it('matches the generation script exactly (so seeded hashes work)', async () => {
     expect(script.CODE_ALPHABET).toBe(CODE_ALPHABET);
     expect(script.CODE_LENGTH).toBe(CODE_LENGTH);
-    for (const sample of ['ABCD-1234-EFGH-5678', 'oiLo-1111-zzzz-0000', '0123456789abcdef']) {
+    for (const sample of ['ABCD-1234-EFGH-5678', 'oiLo-1111-zzzz-0000', '0123456789abcdef', '4821']) {
       expect(script.normalizeCode(sample)).toBe(normalizeCode(sample));
       expect(script.hashCode(sample)).toBe(await hashCode(sample));
     }
     const batch = script.generateBatch({ count: 25, prefix: 'Test' });
     expect(new Set(batch.map((r) => r.code)).size).toBe(25);
+    for (const row of batch) expect(row.code).toMatch(/^[1-9][0-9]{3}$/);
+    expect(script.generateBatch({ count: 3, prefix: 'Long', long: true })[0]!.code).toHaveLength(CODE_LENGTH);
     expect(batch[0]?.label).toBe('Test 001');
     for (const row of batch) {
       expect(isWellFormedCode(row.code)).toBe(true);

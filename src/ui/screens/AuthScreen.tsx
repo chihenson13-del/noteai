@@ -6,7 +6,6 @@ import { backend } from '../../app/backend';
 import { env } from '../../config/env';
 import { errorMessage, isAppError } from '../../lib/errors';
 import {
-  CODE_LENGTH,
   formatCodeInput,
   isWellFormedCode,
   normalizeCode,
@@ -85,7 +84,7 @@ export function AuthScreen() {
     resetMessages();
 
     if (!isWellFormedCode(normalizeCode(code))) {
-      setError(`Enter the full ${CODE_LENGTH}-character access code.`);
+      setError('Enter your access code (4 digits).');
       return;
     }
     let profile: { fullName: string; email: string } | undefined;
@@ -204,14 +203,14 @@ export function AuthScreen() {
                 autoComplete="off"
                 autoCorrect="off"
                 spellCheck={false}
-                placeholder="XXXX-XXXX-XXXX-XXXX"
+                placeholder="1234"
                 value={code}
                 readOnly={needsProfile}
                 onChange={(e) => setCode(formatCodeInput(e.target.value))}
                 aria-describedby="auth-code-hint"
               />
               <span id="auth-code-hint" className="hint">
-                Letters and numbers only; dashes are added for you.{' '}
+                Your 4-digit code (the admin code is longer).{' '}
                 {needsProfile && (
                   <button
                     type="button"

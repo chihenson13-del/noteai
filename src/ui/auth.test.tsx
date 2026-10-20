@@ -61,7 +61,7 @@ describe('access-code sign-in', () => {
     renderScreen();
     await user.type(screen.getByLabelText('Access code'), 'abcd-12');
     await user.click(screen.getByRole('button', { name: /sign in/i }));
-    expect(screen.getByRole('alert')).toHaveTextContent(/full 16-character/i);
+    expect(screen.getByRole('alert')).toHaveTextContent(/4 digits/i);
     expect(signInWithCode).not.toHaveBeenCalled();
   });
 

@@ -5,14 +5,14 @@
 // POST { action: "list" }                                     -> { codes: [...] }
 // POST { action: "revoke" | "restore", codeId }               -> { status: "ok" }
 // POST { action: "release_device", codeId, deviceHash }       -> { status: "ok" }
-// POST { action: "create", count: 1..50, label? }             -> { codes: ["XXXX-XXXX-XXXX-XXXX", ...] }  (plain codes, shown once)
+// POST { action: "create", count: 1..50, label? }             -> { codes: ["4821", ...] }  (plain codes, shown once)
 //   Authorization: Bearer <user JWT>
 //
 // Plain codes are never stored: only their SHA-256 hash. Revoking also bans the code's auth user, so the device is signed
 // out when its short-lived token expires and cannot sign in again until the code is restored.
 
 import { createClient } from 'npm:@supabase/supabase-js@2';
-import { formatCode, generateCode, hashCode } from '../_shared/accessCode.ts';
+import { formatCode, generateShortCode, hashCode } from '../_shared/accessCode.ts';
 import { codeStatus, parseAdminRequest } from '../_shared/admin.ts';
 
 const corsHeaders = {
@@ -138,13 +138,21 @@ Deno.serve(async (req) => {
   }
 
   // create
+  // Member codes are 4 digits, so a new one can collide with an existing code: skip those and try another.
   const created: string[] = [];
   const rows: Array<{ code_hash: string; label: string; max_devices: number }> = [];
-  for (let i = 0; i < request.count; i += 1) {
-    const code = generateCode();
+  const hashes = new Set<string>();
+  for (let attempts = 0; created.length < request.count && attempts < 2000; attempts += 1) {
+    const code = generateShortCode();
+    const hash = await hashCode(code);
+    if (hashes.has(hash)) continue;
+    const { data: taken } = await admin.from('access_codes').select('id').eq('code_hash', hash).maybeSingle();
+    if (taken) continue;
+    hashes.add(hash);
     created.push(formatCode(code));
-    rows.push({ code_hash: await hashCode(code), label: `${request.label} ${i + 1}`.slice(0, 120), max_devices: 1 });
+    rows.push({ code_hash: hash, label: `${request.label} ${created.length}`.slice(0, 120), max_devices: 1 });
   }
+  if (created.length < request.count) return json(500, { error: 'Not enough free 4-digit codes. Try fewer.' });
   const { error: insertError } = await admin.from('access_codes').insert(rows);
   if (insertError) return json(500, { error: 'Could not create the codes. Please try again.' });
   return json(200, { codes: created });

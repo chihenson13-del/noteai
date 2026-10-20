@@ -13,6 +13,11 @@
 export const CODE_ALPHABET = '0123456789ABCDEFGHJKMNPQRSTVWXYZ';
 export const CODE_LENGTH = 16;
 export const CODE_GROUP = 4;
+/**
+ * Member codes are 4 digits (1000-9999): easy to type on a phone, but only ~13 bits, so they can be guessed. The server
+ * therefore rate-limits failures per address and overall (see redeem-code). Admin codes stay at the long form.
+ */
+export const SHORT_CODE_LENGTH = 4;
 
 /** Uppercases, maps look-alikes (O→0, I/L→1) and drops separators and spaces. */
 export function normalizeCode(input: string): string {
@@ -24,6 +29,7 @@ export function normalizeCode(input: string): string {
 }
 
 export function isWellFormedCode(normalized: string): boolean {
+  if (normalized.length === SHORT_CODE_LENGTH) return /^[0-9]{4}$/.test(normalized);
   if (normalized.length !== CODE_LENGTH) return false;
   for (const char of normalized) {
     if (!CODE_ALPHABET.includes(char)) return false;
@@ -54,6 +60,16 @@ export function generateCode(random: (length: number) => Uint8Array = defaultRan
     }
   }
   return code;
+}
+
+/** A random 4-digit member code, 1000-9999 (no leading zero, so it survives being typed as a number). */
+export function generateShortCode(random: (length: number) => Uint8Array = defaultRandom): string {
+  for (;;) {
+    const bytes = random(2);
+    const value = (bytes[0] ?? 0) * 256 + (bytes[1] ?? 0);
+    // 63000 = 7 * 9000: rejecting the tail keeps every number equally likely.
+    if (value < 63_000) return String(1000 + (value % 9000));
+  }
 }
 
 function defaultRandom(length: number): Uint8Array {

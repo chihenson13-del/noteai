@@ -28,8 +28,12 @@ import {
   sanitizeDeviceLabel,
 } from '../_shared/accessCode.ts';
 
-const MAX_FAILURES = 10;
+// 4-digit codes can be guessed, so failures are capped per address AND across all addresses (a guesser rotating
+// addresses still hits the overall cap). Signed-in devices keep working: only new sign-ins are held back.
+const MAX_FAILURES = 5;
 const WINDOW_MS = 15 * 60 * 1000;
+const MAX_FAILURES_OVERALL = 40;
+const OVERALL_WINDOW_MS = 60 * 60 * 1000;
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': Deno.env.get('ALLOWED_ORIGIN') ?? '*',
@@ -82,11 +86,19 @@ Deno.serve(async (req) => {
   if ((count ?? 0) >= MAX_FAILURES) {
     return json(429, { error: 'Too many attempts. Please wait a few minutes and try again.' });
   }
+  const { count: overall } = await admin
+    .from('code_login_attempts')
+    .select('id', { count: 'exact', head: true })
+    .eq('success', false)
+    .gte('created_at', new Date(Date.now() - OVERALL_WINDOW_MS).toISOString());
+  if ((overall ?? 0) >= MAX_FAILURES_OVERALL) {
+    return json(429, { error: 'Sign-in is paused for a few minutes because of too many wrong codes. Please try again later.' });
+  }
 
   const normalized = typeof body.code === 'string' ? normalizeCode(body.code) : '';
   if (!isWellFormedCode(normalized) || !isValidDeviceId(body.deviceId)) {
     await record(false);
-    return json(400, { error: 'Enter the full 16-character access code.' });
+    return json(400, { error: 'Enter your access code (4 digits).' });
   }
 
   const { data: row, error: lookupError } = await admin
