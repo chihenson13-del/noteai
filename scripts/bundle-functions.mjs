@@ -27,7 +27,7 @@ for (const name of names) {
     input: join(functionsDir, name, 'index.ts'),
     external: [/^npm:/, /^jsr:/, /^https?:/, /^node:/],
     platform: 'neutral',
-    treeshake: false,
+    treeshake: true,
   });
   await bundle.write({ file: join(outDir, `${name}.ts`), format: 'esm', minify: false });
   await bundle.close();

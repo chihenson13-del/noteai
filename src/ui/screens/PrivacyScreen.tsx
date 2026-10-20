@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
+import { env } from '../../config/env';
 
 /**
  * A plain-language privacy notice and terms for this beta. It is public (no sign-in) so people can read it before they
@@ -70,6 +71,18 @@ export function PrivacyScreen() {
             served from this site.
           </p>
         </section>
+
+        {env.cloudAi && (
+          <section className="card stack">
+            <h2 className="h3">Only if you choose “Use cloud AI instead”</h2>
+            <p>
+              That button is optional and off by default. If you press it, the recording’s audio is uploaded to private storage on the server, sent to
+              Groq (a third-party AI service) to be transcribed, and the transcript is sent to Groq again to write the notes. The audio and results stay
+              on the server until you delete them (Trust center), and Groq processes them under its own terms. Do not use it for anything you would not
+              want a third party to process. Without pressing it, none of this happens.
+            </p>
+          </section>
+        )}
 
         <section className="card stack">
           <h2 className="h3">Your choices</h2>

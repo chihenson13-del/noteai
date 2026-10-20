@@ -10,7 +10,7 @@
 import { createClient } from 'npm:@supabase/supabase-js@2';
 import { ASK_MAX_RECORDINGS } from '../_shared/limits.ts';
 import { ASK_JSON_SCHEMA, buildAskPrompt, parseAskAnswer, selectSources, type AskCandidate } from '../_shared/ask.ts';
-import { UserFacingError, structuredWithProvider } from '../_shared/providers.ts';
+import { DEFAULT_NOTES_MODEL, UserFacingError, readNotesProvider, structuredWithProvider } from '../_shared/providers.ts';
 import { parseAskRequest } from '../_shared/validation.ts';
 
 const corsHeaders = {
@@ -32,9 +32,9 @@ Deno.serve(async (req) => {
   const serviceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? '';
   if (!url || !serviceKey) return json(503, { error: 'The backend is not configured.' });
 
-  const provider = Deno.env.get('SUMMARY_PROVIDER') === 'openai' ? 'openai' : 'anthropic';
-  const apiKey = provider === 'anthropic' ? Deno.env.get('ANTHROPIC_API_KEY') : Deno.env.get('OPENAI_API_KEY');
-  const model = Deno.env.get('ASK_MODEL') ?? Deno.env.get('SUMMARY_MODEL') ?? (provider === 'anthropic' ? 'claude-sonnet-5-5' : 'gpt-4o-mini');
+  const provider = readNotesProvider(Deno.env.get('SUMMARY_PROVIDER'));
+  const apiKey = Deno.env.get(provider === 'anthropic' ? 'ANTHROPIC_API_KEY' : provider === 'groq' ? 'GROQ_API_KEY' : 'OPENAI_API_KEY');
+  const model = Deno.env.get('ASK_MODEL') ?? Deno.env.get('SUMMARY_MODEL') ?? DEFAULT_NOTES_MODEL[provider];
   if (!apiKey) return json(503, { error: 'Ask is not configured on the server.' });
 
   const token = req.headers.get('Authorization')?.replace(/^Bearer\s+/i, '');

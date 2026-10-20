@@ -16,7 +16,17 @@
 import { createClient, type SupabaseClient } from 'npm:@supabase/supabase-js@2';
 import { MAX_AUDIO_BYTES, MAX_TRANSCRIPT_CHARS, STALE_JOB_MS } from '../_shared/limits.ts';
 import { buildSummaryPrompt, formatTranscriptForPrompt, normalizeNotes } from '../_shared/notes.ts';
-import { UserFacingError, summarizeWithProvider, transcribeWithOpenAI } from '../_shared/providers.ts';
+import {
+  DEFAULT_NOTES_MODEL,
+  DEFAULT_TRANSCRIPTION_MODEL,
+  UserFacingError,
+  readNotesProvider,
+  readSpeechProvider,
+  summarizeWithProvider,
+  transcribeWithOpenAI,
+  type NotesProvider,
+  type SpeechProvider,
+} from '../_shared/providers.ts';
 import type { ParsedSegment } from '../_shared/transcript.ts';
 import { isOwnedStoragePath, parseProcessRequest, type ProcessRequest } from '../_shared/validation.ts';
 
@@ -43,22 +53,30 @@ interface Config {
   serviceKey: string;
   openaiKey: string | null;
   anthropicKey: string | null;
+  groqKey: string | null;
+  transcriptionProvider: SpeechProvider;
   transcriptionModel: string;
-  summaryProvider: 'anthropic' | 'openai';
+  summaryProvider: NotesProvider;
   summaryModel: string;
 }
 
+function keyFor(config: Config, provider: NotesProvider): string | null {
+  return provider === 'anthropic' ? config.anthropicKey : provider === 'groq' ? config.groqKey : config.openaiKey;
+}
+
 function readConfig(): Config {
-  const summaryProvider = Deno.env.get('SUMMARY_PROVIDER') === 'openai' ? 'openai' : 'anthropic';
+  const summaryProvider = readNotesProvider(Deno.env.get('SUMMARY_PROVIDER'));
+  const transcriptionProvider = readSpeechProvider(Deno.env.get('TRANSCRIPTION_PROVIDER'));
   return {
     supabaseUrl: Deno.env.get('SUPABASE_URL') ?? '',
     serviceKey: Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? '',
     openaiKey: Deno.env.get('OPENAI_API_KEY') ?? null,
     anthropicKey: Deno.env.get('ANTHROPIC_API_KEY') ?? null,
-    transcriptionModel: Deno.env.get('TRANSCRIPTION_MODEL') ?? 'whisper-1',
+    groqKey: Deno.env.get('GROQ_API_KEY') ?? null,
+    transcriptionProvider,
+    transcriptionModel: Deno.env.get('TRANSCRIPTION_MODEL') ?? DEFAULT_TRANSCRIPTION_MODEL[transcriptionProvider],
     summaryProvider,
-    summaryModel:
-      Deno.env.get('SUMMARY_MODEL') ?? (summaryProvider === 'anthropic' ? 'claude-sonnet-5-5' : 'gpt-4o-mini'),
+    summaryModel: Deno.env.get('SUMMARY_MODEL') ?? DEFAULT_NOTES_MODEL[summaryProvider],
   };
 }
 
@@ -123,7 +141,8 @@ async function runPipeline(
     }
 
     if (mustTranscribe) {
-      if (!config.openaiKey) throw new UserFacingError('Transcription is not configured on the server.', 503);
+      const speechKey = keyFor(config, config.transcriptionProvider);
+      if (!speechKey) throw new UserFacingError('Transcription is not configured on the server.', 503);
       if (!recording.storage_path) throw new UserFacingError('The recording has not been uploaded yet.', 409);
 
       const { data: file, error: downloadError } = await admin.storage.from(BUCKET).download(recording.storage_path);
@@ -138,13 +157,14 @@ async function runPipeline(
 
       const extension = recording.storage_path.split('.').pop() ?? 'webm';
       const result = await transcribeWithOpenAI({
-        apiKey: config.openaiKey,
+        provider: config.transcriptionProvider,
+        apiKey: speechKey,
         model: config.transcriptionModel,
         file,
         fileName: `${recording.id}.${extension}`,
         language: request.options.language,
       });
-      await logTransfer(admin, recording, 'transcription', 'openai');
+      await logTransfer(admin, recording, 'transcription', config.transcriptionProvider);
 
       const { error: saveError } = await admin.from('transcripts').upsert(
         {
@@ -153,7 +173,7 @@ async function runPipeline(
           language: result.language,
           full_text: result.text,
           segments: result.segments,
-          provider: 'openai',
+          provider: config.transcriptionProvider,
           model: config.transcriptionModel,
         },
         { onConflict: 'recording_id' },
@@ -171,7 +191,7 @@ async function runPipeline(
 
     // ---- summarization --------------------------------------------------------------------
     stage = 'summarize';
-    const providerKey = config.summaryProvider === 'anthropic' ? config.anthropicKey : config.openaiKey;
+    const providerKey = keyFor(config, config.summaryProvider);
     if (!providerKey) throw new UserFacingError('AI notes are not configured on the server.', 503);
 
     const transcript = formatTranscriptForPrompt(segments, transcriptText ?? '', MAX_TRANSCRIPT_CHARS);
@@ -297,9 +317,9 @@ Deno.serve(async (req) => {
       await setFailed(admin, recording.id, 'transcribe', message);
       return json(413, { error: message });
     }
-    if (!config.openaiKey) return json(503, { error: 'Transcription is not configured on the server.' });
+    if (!keyFor(config, config.transcriptionProvider)) return json(503, { error: 'Transcription is not configured on the server.' });
   }
-  const summaryKey = config.summaryProvider === 'anthropic' ? config.anthropicKey : config.openaiKey;
+  const summaryKey = keyFor(config, config.summaryProvider);
   if (!summaryKey) return json(503, { error: 'AI notes are not configured on the server.' });
 
   // Retire jobs that were abandoned (function timeout / crash) so a retry is possible.

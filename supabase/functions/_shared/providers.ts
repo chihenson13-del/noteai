@@ -22,7 +22,36 @@ export function describeProviderFailure(provider: string, status: number): strin
   return `${provider} could not process the request (HTTP ${status}).`;
 }
 
+export type SpeechProvider = 'openai' | 'groq';
+export type NotesProvider = 'anthropic' | 'openai' | 'groq';
+
+/** Groq speaks the OpenAI wire format; only the host differs. */
+export const PROVIDER_BASE_URL: Record<'openai' | 'groq', string> = {
+  openai: 'https://api.openai.com/v1',
+  groq: 'https://api.groq.com/openai/v1',
+};
+
+export const PROVIDER_LABEL: Record<NotesProvider, string> = { anthropic: 'Anthropic', openai: 'OpenAI', groq: 'Groq' };
+
+/** Default models per provider (override with TRANSCRIPTION_MODEL / SUMMARY_MODEL). */
+export const DEFAULT_TRANSCRIPTION_MODEL: Record<SpeechProvider, string> = { openai: 'whisper-1', groq: 'whisper-large-v3' };
+export const DEFAULT_NOTES_MODEL: Record<NotesProvider, string> = {
+  anthropic: 'claude-sonnet-5-5',
+  openai: 'gpt-4o-mini',
+  groq: 'llama-3.3-70b-versatile',
+};
+
+export function readSpeechProvider(value: string | undefined | null): SpeechProvider {
+  return value === 'groq' ? 'groq' : 'openai';
+}
+
+export function readNotesProvider(value: string | undefined | null): NotesProvider {
+  return value === 'openai' || value === 'groq' ? value : 'anthropic';
+}
+
 export interface TranscribeParams {
+  /** Which service to call. Defaults to OpenAI. */
+  provider?: SpeechProvider;
   apiKey: string;
   model: string;
   file: Blob;
@@ -32,10 +61,13 @@ export interface TranscribeParams {
   fetchImpl?: typeof fetch;
 }
 
-/** OpenAI audio transcription. whisper-1 returns segment timestamps; newer models return text only. */
+/**
+ * Audio transcription through OpenAI or Groq (same API shape). whisper-1 and Groq's whisper-large-v3 family return segment
+ * timestamps; newer OpenAI models return text only.
+ */
 export async function transcribeWithOpenAI(params: TranscribeParams): Promise<ParsedTranscript> {
-  const { apiKey, model, file, fileName, language, fetchImpl = fetch } = params;
-  const supportsSegments = model === 'whisper-1';
+  const { provider = 'openai', apiKey, model, file, fileName, language, fetchImpl = fetch } = params;
+  const supportsSegments = model === 'whisper-1' || /^whisper-large-v3/.test(model);
   const form = new FormData();
   form.append('file', file, fileName);
   form.append('model', model);
@@ -45,7 +77,7 @@ export async function transcribeWithOpenAI(params: TranscribeParams): Promise<Pa
 
   let response: Response;
   try {
-    response = await fetchImpl('https://api.openai.com/v1/audio/transcriptions', {
+    response = await fetchImpl(`${PROVIDER_BASE_URL[provider]}/audio/transcriptions`, {
       method: 'POST',
       headers: { Authorization: `Bearer ${apiKey}` },
       body: form,
@@ -64,7 +96,7 @@ export async function transcribeWithOpenAI(params: TranscribeParams): Promise<Pa
 }
 
 export interface StructuredParams {
-  provider: 'anthropic' | 'openai';
+  provider: NotesProvider;
   apiKey: string;
   model: string;
   system: string;
@@ -83,7 +115,7 @@ export interface StructuredParams {
  */
 export async function structuredWithProvider(params: StructuredParams): Promise<unknown> {
   const { provider, apiKey, model, system, user, schema, schemaName, toolDescription, fetchImpl = fetch } = params;
-  const label = provider === 'anthropic' ? 'Anthropic' : 'OpenAI';
+  const label = PROVIDER_LABEL[provider];
 
   let response: Response;
   try {
@@ -101,8 +133,24 @@ export async function structuredWithProvider(params: StructuredParams): Promise<
         }),
         signal: AbortSignal.timeout(5 * 60 * 1000),
       });
+    } else if (provider === 'groq') {
+      // JSON-object mode works on every Groq model; the schema is given in the prompt and the result is validated by the caller.
+      response = await fetchImpl(`${PROVIDER_BASE_URL.groq}/chat/completions`, {
+        method: 'POST',
+        headers: { Authorization: `Bearer ${apiKey}`, 'content-type': 'application/json' },
+        body: JSON.stringify({
+          model,
+          messages: [
+            { role: 'system', content: `${system}\n\nReturn ONLY one JSON object that follows this JSON Schema:\n${JSON.stringify(schema)}` },
+            { role: 'user', content: user },
+          ],
+          response_format: { type: 'json_object' },
+          temperature: 0.2,
+        }),
+        signal: AbortSignal.timeout(5 * 60 * 1000),
+      });
     } else {
-      response = await fetchImpl('https://api.openai.com/v1/chat/completions', {
+      response = await fetchImpl(`${PROVIDER_BASE_URL.openai}/chat/completions`, {
         method: 'POST',
         headers: { Authorization: `Bearer ${apiKey}`, 'content-type': 'application/json' },
         body: JSON.stringify({
@@ -141,7 +189,7 @@ export async function structuredWithProvider(params: StructuredParams): Promise<
 }
 
 export interface SummarizeParams {
-  provider: 'anthropic' | 'openai';
+  provider: NotesProvider;
   apiKey: string;
   model: string;
   system: string;
