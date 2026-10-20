@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>NoteAI chaptered notes</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#FAF7F2}
+button{font-family:inherit}
+</style>
+</helmet>
+<div style="position: relative; width: 390px; height: 844px; box-sizing: border-box; overflow: hidden; background: #FAF7F2; color: #1F1D2B; font-family: 'Manrope', system-ui, sans-serif; padding: 20px 20px 0; display: flex; flex-direction: column; gap: 12px">
+
+  <header style="display: flex; align-items: center; gap: 10px">
+    <button type="button" aria-label="Back to library" style="flex: none; width: 44px; height: 44px; border-radius: 14px; border: 1px solid #E9E2D6; background: #fff; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1F1D2B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button>
+    <h1 style="margin: 0; flex: 1; min-width: 0; font-size: 18px; font-weight: 800; letter-spacing: -0.01em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">Weekly product sync</h1>
+    <button type="button" aria-label="Share notes" style="flex: none; width: 44px; height: 44px; border-radius: 14px; border: 1px solid #E9E2D6; background: #fff; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1F1D2B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="M8.2 10.9l7.6-3.8M8.2 13.1l7.6 3.8"/></svg></button>
+  </header>
+
+  <section aria-label="Playback" style="background: #fff; border: 1px solid #E9E2D6; border-radius: 20px; padding: 12px 14px; display: flex; align-items: center; gap: 12px">
+    <button type="button" aria-label="Play" style="flex: none; width: 48px; height: 48px; border-radius: 50%; border: 0; background: #6A4FD6; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></button>
+    <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px">
+      <div style="position: relative; height: 22px">
+        <div style="position: absolute; left: 0; right: 0; top: 9px; height: 4px; border-radius: 2px; background: #ECE5DA"></div>
+        <div style="position: absolute; left: 0; width: 34%; top: 9px; height: 4px; border-radius: 2px; background: #6A4FD6"></div>
+        <span style="position: absolute; left: 30%; top: 0; width: 2px; height: 22px; background: #fff"></span>
+        <span style="position: absolute; left: 61%; top: 0; width: 2px; height: 22px; background: #fff"></span>
+        <span style="position: absolute; left: calc(36% - 4px); top: 4px; width: 8px; height: 8px; border-radius: 50%; background: #D9473A"></span>
+        <span style="position: absolute; left: calc(90% - 4px); top: 4px; width: 8px; height: 8px; border-radius: 50%; background: #D9473A"></span>
+        <span style="position: absolute; left: calc(34% - 7px); top: 4px; width: 14px; height: 14px; border-radius: 50%; background: #fff; border: 3px solid #6A4FD6; box-sizing: border-box"></span>
+      </div>
+      <div style="display: flex; justify-content: space-between; font-size: 12px; font-weight: 700; color: #5E5A6B; font-variant-numeric: tabular-nums"><span>14:32</span><span>42:10</span></div>
+    </div>
+  </section>
+
+  <div style="display: flex; gap: 4px; background: #F1EBE0; border-radius: 999px; padding: 4px" role="tablist" aria-label="Recording content">
+    <button type="button" role="tab" aria-selected="true" style="flex: 1; min-height: 40px; border-radius: 999px; border: 0; background: #fff; font-weight: 800; font-size: 14px; color: #1F1D2B">Notes</button>
+    <button type="button" role="tab" aria-selected="false" style="flex: 1; min-height: 40px; border-radius: 999px; border: 0; background: transparent; font-weight: 700; font-size: 14px; color: #5E5A6B">Transcript</button>
+    <button type="button" role="tab" aria-selected="false" style="flex: 1; min-height: 40px; border-radius: 999px; border: 0; background: transparent; font-weight: 700; font-size: 14px; color: #5E5A6B">Moments · 3</button>
+  </div>
+
+  <p style="margin: 0; font-size: 12.5px; line-height: 1.45; color: #5E5A6B; display: flex; gap: 8px; align-items: flex-start"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4F38B5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 1px"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v5h1"/></svg>AI-generated from the transcript. Tap any time chip to hear the source before you rely on it.</p>
+
+  <section aria-label="Chapter 1" style="background: #fff; border: 1px solid #E9E2D6; border-radius: 20px; padding: 14px 16px; display: flex; flex-direction: column; gap: 10px">
+    <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 8px">
+      <h2 style="margin: 0; font-size: 16px; font-weight: 800">1 · Launch timeline</h2>
+      <span style="font-size: 12.5px; font-weight: 700; color: #6E6A7C; font-variant-numeric: tabular-nums">00:00 – 12:40</span>
+    </div>
+    <div style="display: flex; gap: 10px; align-items: flex-start">
+      <span style="flex: none; width: 7px; height: 7px; border-radius: 50%; background: #6A4FD6; margin-top: 8px"></span>
+      <p style="margin: 0; flex: 1; font-size: 14.5px; line-height: 1.45">Design review is done; engineering estimates the build at six weeks.</p>
+      <button type="button" style="flex: none; min-height: 32px; padding: 0 10px; border-radius: 999px; border: 0; background: #EEE9FC; color: #4F38B5; font-weight: 800; font-size: 12.5px; font-variant-numeric: tabular-nums">▶ 04:12</button>
+    </div>
+    <div style="display: flex; gap: 10px; align-items: flex-start">
+      <span style="flex: none; width: 7px; height: 7px; border-radius: 50%; background: #6A4FD6; margin-top: 8px"></span>
+      <p style="margin: 0; flex: 1; font-size: 14.5px; line-height: 1.45">Marketing needs final copy two weeks before launch.</p>
+      <button type="button" style="flex: none; min-height: 32px; padding: 0 10px; border-radius: 999px; border: 0; background: #EEE9FC; color: #4F38B5; font-weight: 800; font-size: 12.5px; font-variant-numeric: tabular-nums">▶ 09:47</button>
+    </div>
+  </section>
+
+  <section aria-label="Decisions" style="background: #fff; border: 1px solid #E9E2D6; border-radius: 20px; padding: 14px 16px; display: flex; flex-direction: column; gap: 10px">
+    <div style="display: flex; align-items: center; gap: 8px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2B7A57" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><h2 style="margin: 0; font-size: 16px; font-weight: 800">Decision</h2></div>
+    <div style="display: flex; gap: 10px; align-items: flex-start">
+      <p style="margin: 0; flex: 1; font-size: 14.5px; line-height: 1.45">Move the launch to May to protect quality.</p>
+      <button type="button" style="flex: none; min-height: 32px; padding: 0 10px; border-radius: 999px; border: 0; background: #EEE9FC; color: #4F38B5; font-weight: 800; font-size: 12.5px; font-variant-numeric: tabular-nums">▶ 15:22</button>
+    </div>
+  </section>
+
+  <section aria-label="Action items" style="background: #fff; border: 1px solid #E9E2D6; border-radius: 20px; padding: 14px 16px; display: flex; flex-direction: column; gap: 10px">
+    <h2 style="margin: 0; font-size: 16px; font-weight: 800">Action items</h2>
+    <label style="display: flex; gap: 12px; align-items: flex-start; min-height: 44px">
+      <input type="checkbox" style="width: 22px; height: 22px; margin: 2px 0 0; accent-color: #6A4FD6; flex: none">
+      <span style="flex: 1; min-width: 0"><span style="display: block; font-size: 14.5px; line-height: 1.4">Finish the pricing page</span><span style="display: block; font-size: 12.5px; color: #5E5A6B; margin-top: 2px">Sam · due Friday · ▶ 38:04</span></span>
+    </label>
+    <label style="display: flex; gap: 12px; align-items: flex-start; min-height: 44px">
+      <input type="checkbox" checked style="width: 22px; height: 22px; margin: 2px 0 0; accent-color: #6A4FD6; flex: none">
+      <span style="flex: 1; min-width: 0"><span style="display: block; font-size: 14.5px; line-height: 1.4; text-decoration: line-through; color: #6E6A7C">Send the recap to the team</span><span style="display: block; font-size: 12.5px; color: #5E5A6B; margin-top: 2px">You · ▶ 41:30</span></span>
+    </label>
+  </section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

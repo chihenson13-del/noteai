@@ -1,0 +1,683 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NoteAI premium redesign mockup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: #FAF7F2; color: #1F1D2B; font-family: 'Manrope', system-ui, -apple-system, 'Segoe UI', sans-serif; -webkit-font-smoothing: antialiased; }
+  button, input, select { font-family: inherit; }
+  .topnav { position: sticky; top: 0; z-index: 20; display: flex; align-items: center; gap: 8px; padding: 10px 20px; background: rgba(250, 247, 242, 0.94); backdrop-filter: blur(8px); border-bottom: 1px solid #E9E2D6; overflow-x: auto; white-space: nowrap; }
+  .topnav strong { font-size: 15px; letter-spacing: -0.01em; margin-right: 8px; }
+  .topnav a { min-height: 40px; display: inline-flex; align-items: center; padding: 0 14px; border-radius: 999px; background: #fff; border: 1px solid #E9E2D6; color: #1F1D2B; font-weight: 700; font-size: 14px; text-decoration: none; }
+  .topnav a:hover { background: #EEE9FC; }
+  .section-head { max-width: 1200px; margin: 0 auto; padding: 72px 24px 28px; }
+  .section-head h2 { margin: 0; font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: 52px; letter-spacing: -0.02em; line-height: 1.05; }
+  .section-head p { margin: 10px 0 0; color: #5E5A6B; font-size: 16px; line-height: 1.55; max-width: 640px; }
+  .phones { display: flex; flex-wrap: wrap; gap: 56px 48px; justify-content: center; padding: 16px 24px 40px; }
+  .device { display: flex; flex-direction: column; gap: 22px; align-items: center; }
+  .device-label { font-weight: 800; font-size: 14px; color: #5E5A6B; letter-spacing: 0.02em; }
+  .frame { position: relative; width: 390px; height: 844px; border-radius: 44px; overflow: hidden; background: #FAF7F2; box-shadow: 0 0 0 10px #1F1D2B, 0 36px 70px rgba(31, 29, 43, 0.28); }
+  .desktop-wrap { overflow-x: auto; padding: 16px 24px 24px; }
+  .desktop-frame { width: 1280px; height: 820px; margin: 0 auto; border-radius: 16px; overflow: hidden; border: 1px solid #D6CDBF; box-shadow: 0 36px 70px rgba(31, 29, 43, 0.18); background: #FAF7F2; }
+  footer { max-width: 1200px; margin: 0 auto; padding: 40px 24px 72px; color: #5E5A6B; font-size: 14px; line-height: 1.6; }
+</style>
+</head>
+<body>
+
+<nav class="topnav" aria-label="Sections">
+  <strong>NoteAI premium mockup</strong>
+  <a href="#overview">Overview</a>
+  <a href="#mobile">Mobile flows</a>
+  <a href="#desktop">Desktop workspace</a>
+</nav>
+
+<section id="overview" aria-label="Overview">
+<div style="width: 100%; min-height: 1560px; box-sizing: border-box; background: #FAF7F2; color: #1F1D2B; font-family: 'Manrope', system-ui, sans-serif; padding: 56px 24px 96px">
+<div style="max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; gap: 72px">
+
+  <header style="display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap">
+    <div style="display: flex; align-items: center; gap: 12px">
+      <div style="width: 40px; height: 40px; border-radius: 12px; background: #6A4FD6; display: flex; align-items: center; justify-content: center">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FAF7F2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>
+      </div>
+      <span style="font-weight: 800; font-size: 20px; letter-spacing: -0.02em">NoteAI</span>
+    </div>
+    <span style="font-size: 14px; font-weight: 600; color: #4F38B5; background: #EEE9FC; padding: 8px 14px; border-radius: 999px">Design proposal · mockups are static, sample text is illustrative</span>
+  </header>
+
+  <section style="display: flex; flex-direction: column; gap: 28px; max-width: 900px">
+    <h1 style="margin: 0; font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: 72px; line-height: 1.02; letter-spacing: -0.02em">Make every recording feel trustworthy, searchable and <em style="color: #6A4FD6">finished</em>.</h1>
+    <p style="margin: 0; font-size: 20px; line-height: 1.55; color: #5E5A6B; max-width: 720px">Eight upgrades that turn NoteAI from a capable recorder into a calm, premium workspace, while staying a plain website and never pretending a browser can do what it can’t.</p>
+    <div style="display: flex; gap: 10px; flex-wrap: wrap">
+      <span style="font-size: 14px; font-weight: 700; padding: 9px 16px; border-radius: 999px; background: #fff; border: 1px solid #E9E2D6">Browser-only, nothing to install</span>
+      <span style="font-size: 14px; font-weight: 700; padding: 9px 16px; border-radius: 999px; background: #fff; border: 1px solid #E9E2D6">No fake transcripts or summaries</span>
+      <span style="font-size: 14px; font-weight: 700; padding: 9px 16px; border-radius: 999px; background: #fff; border: 1px solid #E9E2D6">Original audio is never the casualty</span>
+    </div>
+  </section>
+
+  <section style="display: flex; flex-direction: column; gap: 28px">
+    <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap">
+      <h2 style="margin: 0; font-size: 28px; letter-spacing: -0.02em">Eight upgrades</h2>
+      <span style="font-size: 14px; color: #5E5A6B">Each is tagged with what it would actually take</span>
+    </div>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 16px">
+
+      <article style="flex: 1 1 270px; min-width: 0; background: #fff; border: 1px solid #E9E2D6; border-radius: 22px; padding: 24px; display: flex; flex-direction: column; gap: 12px">
+        <div style="display: flex; align-items: center; justify-content: space-between">
+          <div style="width: 44px; height: 44px; border-radius: 14px; background: #EEE9FC; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4F38B5" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg></div>
+          <span style="font-size: 13px; font-weight: 700; color: #6E6A7C">01</span>
+        </div>
+        <h3 style="margin: 0; font-size: 18px; letter-spacing: -0.01em">Capture health, live</h3>
+        <p style="margin: 0; font-size: 15px; line-height: 1.55; color: #5E5A6B">A quiet status strip while recording: mic connected, input level, “last saved to this device 0.8 s ago”, free space. Trust you can see.</p>
+        <span style="align-self: flex-start; margin-top: auto; font-size: 12.5px; font-weight: 700; color: #2B7A57; background: #E3F2EA; padding: 4px 10px; border-radius: 999px">UI only · data already exists</span>
+      </article>
+
+      <article style="flex: 1 1 270px; min-width: 0; background: #fff; border: 1px solid #E9E2D6; border-radius: 22px; padding: 24px; display: flex; flex-direction: column; gap: 12px">
+        <div style="display: flex; align-items: center; justify-content: space-between">
+          <div style="width: 44px; height: 44px; border-radius: 14px; background: #EEE9FC; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4F38B5" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4z"/></svg></div>
+          <span style="font-size: 13px; font-weight: 700; color: #6E6A7C">02</span>
+        </div>
+        <h3 style="margin: 0; font-size: 18px; letter-spacing: -0.01em">Moments</h3>
+        <p style="margin: 0; font-size: 15px; line-height: 1.55; color: #5E5A6B">One tap drops a marker, or a typed quick note, at the current time. Markers become anchors in the notes and on the playback timeline.</p>
+        <span style="align-self: flex-start; margin-top: auto; font-size: 12.5px; font-weight: 700; color: #2B7A57; background: #E3F2EA; padding: 4px 10px; border-radius: 999px">UI + small local data</span>
+      </article>
+
+      <article style="flex: 1 1 270px; min-width: 0; background: #fff; border: 1px solid #E9E2D6; border-radius: 22px; padding: 24px; display: flex; flex-direction: column; gap: 12px">
+        <div style="display: flex; align-items: center; justify-content: space-between">
+          <div style="width: 44px; height: 44px; border-radius: 14px; background: #EEE9FC; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4F38B5" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6l2 2 3-3M4 14l2 2 3-3M13 7h7M13 15h7"/></svg></div>
+          <span style="font-size: 13px; font-weight: 700; color: #6E6A7C">03</span>
+        </div>
+        <h3 style="margin: 0; font-size: 18px; letter-spacing: -0.01em">Chaptered notes with evidence</h3>
+        <p style="margin: 0; font-size: 15px; line-height: 1.55; color: #5E5A6B">Notes split into timed chapters. Every takeaway, decision and task links to the exact transcript line and audio second it came from.</p>
+        <span style="align-self: flex-start; margin-top: auto; font-size: 12.5px; font-weight: 700; color: #8F5A0B; background: #FBF0D9; padding: 4px 10px; border-radius: 999px">Needs server prompt + schema change</span>
+      </article>
+
+      <article style="flex: 1 1 270px; min-width: 0; background: #fff; border: 1px solid #E9E2D6; border-radius: 22px; padding: 24px; display: flex; flex-direction: column; gap: 12px">
+        <div style="display: flex; align-items: center; justify-content: space-between">
+          <div style="width: 44px; height: 44px; border-radius: 14px; background: #EEE9FC; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4F38B5" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></div>
+          <span style="font-size: 13px; font-weight: 700; color: #6E6A7C">04</span>
+        </div>
+        <h3 style="margin: 0; font-size: 18px; letter-spacing: -0.01em">Ask your recordings</h3>
+        <p style="margin: 0; font-size: 15px; line-height: 1.55; color: #5E5A6B">Ask “what did we decide about pricing?” across the library. Answers cite recordings and timestamps, and say “not found” when it isn’t there.</p>
+        <span style="align-self: flex-start; margin-top: auto; font-size: 12.5px; font-weight: 700; color: #8F5A0B; background: #FBF0D9; padding: 4px 10px; border-radius: 999px">Needs backend retrieval + AI call</span>
+      </article>
+
+      <article style="flex: 1 1 270px; min-width: 0; background: #fff; border: 1px solid #E9E2D6; border-radius: 22px; padding: 24px; display: flex; flex-direction: column; gap: 12px">
+        <div style="display: flex; align-items: center; justify-content: space-between">
+          <div style="width: 44px; height: 44px; border-radius: 14px; background: #EEE9FC; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4F38B5" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></div>
+          <span style="font-size: 13px; font-weight: 700; color: #6E6A7C">05</span>
+        </div>
+        <h3 style="margin: 0; font-size: 18px; letter-spacing: -0.01em">A smarter library</h3>
+        <p style="margin: 0; font-size: 15px; line-height: 1.55; color: #5E5A6B">Pinned items, collections, and a “Needs attention” queue that gathers failed uploads and interrupted captures so nothing sits unnoticed.</p>
+        <span style="align-self: flex-start; margin-top: auto; font-size: 12.5px; font-weight: 700; color: #2B7A57; background: #E3F2EA; padding: 4px 10px; border-radius: 999px">UI + light local logic</span>
+      </article>
+
+      <article style="flex: 1 1 270px; min-width: 0; background: #fff; border: 1px solid #E9E2D6; border-radius: 22px; padding: 24px; display: flex; flex-direction: column; gap: 12px">
+        <div style="display: flex; align-items: center; justify-content: space-between">
+          <div style="width: 44px; height: 44px; border-radius: 14px; background: #EEE9FC; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4F38B5" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/></svg></div>
+          <span style="font-size: 13px; font-weight: 700; color: #6E6A7C">06</span>
+        </div>
+        <h3 style="margin: 0; font-size: 18px; letter-spacing: -0.01em">Trust center</h3>
+        <p style="margin: 0; font-size: 15px; line-height: 1.55; color: #5E5A6B">One screen for consent, what has left this device, per-recording retention and a one-click wipe. Privacy as a feature, not a footnote.</p>
+        <span style="align-self: flex-start; margin-top: auto; font-size: 12.5px; font-weight: 700; color: #8F5A0B; background: #FBF0D9; padding: 4px 10px; border-radius: 999px">UI + upload log in backend</span>
+      </article>
+
+      <article style="flex: 1 1 270px; min-width: 0; background: #fff; border: 1px solid #E9E2D6; border-radius: 22px; padding: 24px; display: flex; flex-direction: column; gap: 12px">
+        <div style="display: flex; align-items: center; justify-content: space-between">
+          <div style="width: 44px; height: 44px; border-radius: 14px; background: #EEE9FC; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4F38B5" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="M8.2 10.9l7.6-3.8M8.2 13.1l7.6 3.8"/></svg></div>
+          <span style="font-size: 13px; font-weight: 700; color: #6E6A7C">07</span>
+        </div>
+        <h3 style="margin: 0; font-size: 18px; letter-spacing: -0.01em">Polished sharing</h3>
+        <p style="margin: 0; font-size: 15px; line-height: 1.55; color: #5E5A6B">Branded PDF or Word export, and an expiring read-only link to the notes, never the audio unless you choose.</p>
+        <span style="align-self: flex-start; margin-top: auto; font-size: 12.5px; font-weight: 700; color: #8F5A0B; background: #FBF0D9; padding: 4px 10px; border-radius: 999px">Needs backend share links</span>
+      </article>
+
+      <article style="flex: 1 1 270px; min-width: 0; background: #fff; border: 1px solid #E9E2D6; border-radius: 22px; padding: 24px; display: flex; flex-direction: column; gap: 12px">
+        <div style="display: flex; align-items: center; justify-content: space-between">
+          <div style="width: 44px; height: 44px; border-radius: 14px; background: #EEE9FC; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4F38B5" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.55a11 11 0 0 1 14.08 0M1.42 9a16 16 0 0 1 21.16 0M8.53 16.11a6 6 0 0 1 6.95 0M12 20h.01"/></svg></div>
+          <span style="font-size: 13px; font-weight: 700; color: #6E6A7C">08</span>
+        </div>
+        <h3 style="margin: 0; font-size: 18px; letter-spacing: -0.01em">Offline-ready, installable</h3>
+        <p style="margin: 0; font-size: 15px; line-height: 1.55; color: #5E5A6B">An optional PWA: opens offline, queues uploads until you’re back online, and can sit on the home screen. Still just a website.</p>
+        <span style="align-self: flex-start; margin-top: auto; font-size: 12.5px; font-weight: 700; color: #2B7A57; background: #E3F2EA; padding: 4px 10px; border-radius: 999px">Frontend only · optional</span>
+      </article>
+
+    </div>
+  </section>
+
+  <section style="display: flex; flex-wrap: wrap; gap: 16px">
+    <div style="flex: 1 1 340px; min-width: 0; background: #1F1D2B; color: #FAF7F2; border-radius: 26px; padding: 36px; display: flex; flex-direction: column; gap: 14px">
+      <h2 style="margin: 0; font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: 40px; letter-spacing: -0.01em">Premium means honest.</h2>
+      <p style="margin: 0; font-size: 16px; line-height: 1.6; color: #D8D3E6">These upgrades add polish, not promises. The app keeps saying what a browser can’t guarantee, and the mockups here follow the same rules.</p>
+    </div>
+    <div style="flex: 1 1 340px; min-width: 0; background: #fff; border: 1px solid #E9E2D6; border-radius: 26px; padding: 36px; display: flex; flex-direction: column; gap: 18px">
+      <div style="display: flex; gap: 14px; align-items: flex-start">
+        <span style="flex: none; width: 10px; height: 10px; border-radius: 50%; background: #D9473A; margin-top: 8px"></span>
+        <p style="margin: 0; font-size: 16px; line-height: 1.55"><strong>Screen-off recording stays a stated limit.</strong> <span style="color: #5E5A6B">Capture health shows it; it never hides it.</span></p>
+      </div>
+      <div style="display: flex; gap: 14px; align-items: flex-start">
+        <span style="flex: none; width: 10px; height: 10px; border-radius: 50%; background: #6A4FD6; margin-top: 8px"></span>
+        <p style="margin: 0; font-size: 16px; line-height: 1.55"><strong>No invented content.</strong> <span style="color: #5E5A6B">If a provider isn’t configured, the UI says so; evidence links make AI output checkable.</span></p>
+      </div>
+      <div style="display: flex; gap: 14px; align-items: flex-start">
+        <span style="flex: none; width: 10px; height: 10px; border-radius: 50%; background: #2B7A57; margin-top: 8px"></span>
+        <p style="margin: 0; font-size: 16px; line-height: 1.55"><strong>Audio comes first.</strong> <span style="color: #5E5A6B">Failures and retention never delete an original that hasn’t been processed.</span></p>
+      </div>
+    </div>
+  </section>
+
+  <section style="display: flex; flex-direction: column; gap: 24px">
+    <h2 style="margin: 0; font-size: 28px; letter-spacing: -0.02em">Suggested order</h2>
+    <div style="display: flex; flex-wrap: wrap; gap: 16px">
+      <div style="flex: 1 1 280px; min-width: 0; border-top: 3px solid #6A4FD6; padding-top: 18px; display: flex; flex-direction: column; gap: 8px">
+        <span style="font-size: 13px; font-weight: 800; color: #4F38B5; letter-spacing: 0.06em; text-transform: uppercase">Phase 1 · Feel</span>
+        <p style="margin: 0; font-size: 16px; line-height: 1.55">Capture health, Moments, smarter library, refreshed type and spacing. All frontend, no new services.</p>
+      </div>
+      <div style="flex: 1 1 280px; min-width: 0; border-top: 3px solid #6A4FD6; padding-top: 18px; display: flex; flex-direction: column; gap: 8px">
+        <span style="font-size: 13px; font-weight: 800; color: #4F38B5; letter-spacing: 0.06em; text-transform: uppercase">Phase 2 · Trust</span>
+        <p style="margin: 0; font-size: 16px; line-height: 1.55">Chaptered notes with evidence links and the Trust center. Touches the notes schema and the server prompt.</p>
+      </div>
+      <div style="flex: 1 1 280px; min-width: 0; border-top: 3px solid #6A4FD6; padding-top: 18px; display: flex; flex-direction: column; gap: 8px">
+        <span style="font-size: 13px; font-weight: 800; color: #4F38B5; letter-spacing: 0.06em; text-transform: uppercase">Phase 3 · Reach</span>
+        <p style="margin: 0; font-size: 16px; line-height: 1.55">Ask your recordings, share links and exports, optional offline PWA. The heaviest backend work.</p>
+      </div>
+    </div>
+  </section>
+
+</div>
+</div>
+</section>
+
+<div class="section-head" id="mobile">
+  <h2>Mobile flows</h2>
+  <p>Five screens at 390 &times; 844. Sample text and numbers are illustrative, not real transcripts, and nothing here is clickable.</p>
+</div>
+<div class="phones">
+<div class="device"><div class="device-label">01 · Home</div><div class="frame"><div style="position: relative; width: 390px; height: 844px; box-sizing: border-box; overflow: hidden; background: #FAF7F2; color: #1F1D2B; font-family: 'Manrope', system-ui, sans-serif">
+
+  <div style="padding: 28px 20px 0; display: flex; flex-direction: column; gap: 16px">
+
+    <header style="display: flex; align-items: flex-end; justify-content: space-between; gap: 12px">
+      <div>
+        <div style="font-size: 13px; font-weight: 600; color: #6E6A7C">Tuesday, 13 October</div>
+        <h1 style="margin: 2px 0 0; font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: 38px; line-height: 1.05; letter-spacing: -0.01em">Good afternoon</h1>
+      </div>
+      <button type="button" aria-label="Search recordings" style="width: 44px; height: 44px; border-radius: 14px; border: 1px solid #E9E2D6; background: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1F1D2B" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+      </button>
+    </header>
+
+    <section aria-label="Start a recording" style="background: #1F1D2B; color: #FAF7F2; border-radius: 26px; padding: 20px; display: flex; flex-direction: column; gap: 16px">
+      <div style="display: flex; align-items: center; gap: 14px">
+        <button type="button" aria-label="Start recording" style="flex: none; width: 64px; height: 64px; border-radius: 50%; border: 0; background: #6A4FD6; display: flex; align-items: center; justify-content: center; cursor: pointer">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>
+        </button>
+        <div style="min-width: 0">
+          <div style="font-size: 20px; font-weight: 800; letter-spacing: -0.01em">Start recording</div>
+          <div style="font-size: 13.5px; color: #D8D3E6; margin-top: 2px">Standard quality · fits about 109 min</div>
+        </div>
+      </div>
+      <div style="display: flex; gap: 8px; flex-wrap: wrap">
+        <span style="display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; font-weight: 700; padding: 6px 10px; border-radius: 999px; background: rgba(250,247,242,0.12)"><span style="width: 7px; height: 7px; border-radius: 50%; background: #7FD4A5"></span>Mic ready</span>
+        <span style="display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; font-weight: 700; padding: 6px 10px; border-radius: 999px; background: rgba(250,247,242,0.12)"><span style="width: 7px; height: 7px; border-radius: 50%; background: #7FD4A5"></span>2.4 GB free</span>
+        <span style="display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; font-weight: 700; padding: 6px 10px; border-radius: 999px; background: rgba(250,247,242,0.12)"><span style="width: 7px; height: 7px; border-radius: 50%; background: #F2B84B"></span>Keep tab in front</span>
+      </div>
+    </section>
+
+    <section aria-label="Needs attention" style="background: #FBF0D9; border-radius: 20px; padding: 14px 16px; display: flex; align-items: center; gap: 12px">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#8F5A0B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="M12 3l10 18H2z"/><path d="M12 10v5M12 18h.01"/></svg>
+      <div style="flex: 1; min-width: 0">
+        <div style="font-size: 14.5px; font-weight: 800; color: #5E3A05">1 recording needs attention</div>
+        <div style="font-size: 13px; color: #6B4A12">Upload failed. Audio is safe on this device.</div>
+      </div>
+      <button type="button" style="flex: none; min-height: 44px; padding: 0 14px; border-radius: 999px; border: 0; background: #5E3A05; color: #FBF0D9; font-weight: 800; font-size: 14px; cursor: pointer">Retry</button>
+    </section>
+
+    <section style="display: flex; flex-direction: column; gap: 12px">
+      <div style="display: flex; gap: 8px; overflow: hidden">
+        <button type="button" style="flex: none; min-height: 40px; padding: 0 16px; border-radius: 999px; border: 0; background: #1F1D2B; color: #FAF7F2; font-weight: 700; font-size: 14px">All</button>
+        <button type="button" style="flex: none; min-height: 40px; padding: 0 16px; border-radius: 999px; border: 1px solid #E9E2D6; background: #fff; font-weight: 700; font-size: 14px; color: #1F1D2B">Meetings</button>
+        <button type="button" style="flex: none; min-height: 40px; padding: 0 16px; border-radius: 999px; border: 1px solid #E9E2D6; background: #fff; font-weight: 700; font-size: 14px; color: #1F1D2B">Lectures</button>
+        <button type="button" style="flex: none; min-height: 40px; padding: 0 16px; border-radius: 999px; border: 1px solid #E9E2D6; background: #fff; font-weight: 700; font-size: 14px; color: #1F1D2B">Ideas</button>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 10px">
+        <div style="display: flex; align-items: center; gap: 12px; background: #fff; border: 1px solid #E9E2D6; border-radius: 20px; padding: 12px 14px">
+          <div style="flex: none; width: 44px; height: 44px; border-radius: 14px; background: #EEE9FC; display: flex; align-items: center; justify-content: center">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="#4F38B5" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+          <div style="flex: 1; min-width: 0">
+            <div style="font-size: 15px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">Weekly product sync</div>
+            <div style="font-size: 13px; color: #6E6A7C">Today, 2:10 PM · 42 min · 3 moments</div>
+          </div>
+          <span style="flex: none; font-size: 12px; font-weight: 800; color: #2B7A57; background: #E3F2EA; padding: 4px 9px; border-radius: 999px">Notes ready</span>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 12px; background: #fff; border: 1px solid #E9E2D6; border-radius: 20px; padding: 12px 14px">
+          <div style="flex: none; width: 44px; height: 44px; border-radius: 14px; background: #EEE9FC; display: flex; align-items: center; justify-content: center">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="#4F38B5" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+          <div style="flex: 1; min-width: 0">
+            <div style="font-size: 15px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">Customer interview: Rivera</div>
+            <div style="font-size: 13px; color: #6E6A7C">Yesterday · 18 min · 2 moments</div>
+          </div>
+          <span style="flex: none; font-size: 12px; font-weight: 800; color: #4F38B5; background: #EEE9FC; padding: 4px 9px; border-radius: 999px">Writing notes</span>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 12px; background: #fff; border: 1px solid #E9E2D6; border-radius: 20px; padding: 12px 14px">
+          <div style="flex: none; width: 44px; height: 44px; border-radius: 14px; background: #FCE9E6; display: flex; align-items: center; justify-content: center">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#B53A2E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>
+          </div>
+          <div style="flex: 1; min-width: 0">
+            <div style="font-size: 15px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">Voice note: onboarding idea</div>
+            <div style="font-size: 13px; color: #6E6A7C">Mon · 0:48 · on this device</div>
+          </div>
+          <span style="flex: none; font-size: 12px; font-weight: 800; color: #B53A2E; background: #FCE9E6; padding: 4px 9px; border-radius: 999px">Upload failed</span>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <nav aria-label="Primary" style="position: absolute; left: 0; right: 0; bottom: 0; height: 84px; box-sizing: border-box; padding: 8px 12px 18px; background: #fff; border-top: 1px solid #E9E2D6; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); align-items: center">
+    <button type="button" style="border: 0; background: transparent; display: flex; flex-direction: column; align-items: center; gap: 3px; color: #4F38B5; font-size: 12px; font-weight: 800; min-height: 48px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-8 9 8M5 10v10h14V10"/></svg>Home</button>
+    <button type="button" style="border: 0; background: transparent; display: flex; flex-direction: column; align-items: center; gap: 3px; color: #6E6A7C; font-size: 12px; font-weight: 700; min-height: 48px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5v14M9 5v14M14 7l5 12"/></svg>Library</button>
+    <button type="button" aria-label="Record" style="justify-self: center; width: 56px; height: 56px; margin-top: -22px; border-radius: 50%; border: 4px solid #FAF7F2; background: #6A4FD6; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></button>
+    <button type="button" style="border: 0; background: transparent; display: flex; flex-direction: column; align-items: center; gap: 3px; color: #6E6A7C; font-size: 12px; font-weight: 700; min-height: 48px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>Ask</button>
+    <button type="button" style="border: 0; background: transparent; display: flex; flex-direction: column; align-items: center; gap: 3px; color: #6E6A7C; font-size: 12px; font-weight: 700; min-height: 48px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>You</button>
+  </nav>
+</div></div></div>
+<div class="device"><div class="device-label">02 · Live capture</div><div class="frame"><div style="position: relative; width: 390px; height: 844px; box-sizing: border-box; overflow: hidden; background: #FAF7F2; color: #1F1D2B; font-family: 'Manrope', system-ui, sans-serif; padding: 24px 20px 20px; display: flex; flex-direction: column; gap: 14px">
+
+  <header style="display: flex; align-items: center; justify-content: space-between; gap: 12px">
+    <span style="display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: #B53A2E; background: #FCE9E6; padding: 7px 12px; border-radius: 999px"><span style="width: 9px; height: 9px; border-radius: 50%; background: #D9473A"></span>Recording</span>
+    <button type="button" aria-label="Minimise recorder" style="width: 44px; height: 44px; border-radius: 14px; border: 1px solid #E9E2D6; background: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1F1D2B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+  </header>
+
+  <div style="display: flex; flex-direction: column; gap: 4px">
+    <label for="title" style="font-size: 12.5px; font-weight: 700; color: #6E6A7C">Title</label>
+    <input id="title" value="Weekly product sync" style="width: 100%; box-sizing: border-box; min-height: 44px; border: 1px solid #E9E2D6; background: #fff; border-radius: 14px; padding: 0 14px; font-size: 17px; font-weight: 700; color: #1F1D2B">
+  </div>
+
+  <section aria-label="Elapsed time" style="text-align: center; display: flex; flex-direction: column; gap: 2px">
+    <div style="font-family: 'Instrument Serif', Georgia, serif; font-size: 88px; line-height: 1; letter-spacing: -0.02em">42:10</div>
+    <div style="font-size: 13px; font-weight: 700; color: #2B7A57">Saved to this device 0.8 s ago</div>
+  </section>
+
+  <svg viewBox="0 0 350 64" width="350" height="64" role="img" aria-label="Live waveform with two moments marked" style="display: block; margin: 0 auto">
+    <g fill="#6A4FD6">
+      <rect x="4" y="27" width="5" height="10" rx="2.5"/><rect x="13" y="23" width="5" height="18" rx="2.5"/><rect x="22" y="19" width="5" height="26" rx="2.5"/><rect x="31" y="25" width="5" height="14" rx="2.5"/><rect x="40" y="17" width="5" height="30" rx="2.5"/><rect x="49" y="21" width="5" height="22" rx="2.5"/><rect x="58" y="13" width="5" height="38" rx="2.5"/><rect x="67" y="18" width="5" height="28" rx="2.5"/><rect x="76" y="24" width="5" height="16" rx="2.5"/><rect x="85" y="15" width="5" height="34" rx="2.5"/><rect x="94" y="10" width="5" height="44" rx="2.5"/><rect x="103" y="17" width="5" height="30" rx="2.5"/><rect x="112" y="22" width="5" height="20" rx="2.5"/><rect x="121" y="14" width="5" height="36" rx="2.5"/><rect x="130" y="20" width="5" height="24" rx="2.5"/><rect x="139" y="26" width="5" height="12" rx="2.5"/><rect x="148" y="18" width="5" height="28" rx="2.5"/><rect x="157" y="12" width="5" height="40" rx="2.5"/><rect x="166" y="16" width="5" height="32" rx="2.5"/><rect x="175" y="23" width="5" height="18" rx="2.5"/><rect x="184" y="19" width="5" height="26" rx="2.5"/><rect x="193" y="25" width="5" height="14" rx="2.5"/><rect x="202" y="21" width="5" height="22" rx="2.5"/><rect x="211" y="15" width="5" height="34" rx="2.5"/><rect x="220" y="11" width="5" height="42" rx="2.5"/><rect x="229" y="18" width="5" height="28" rx="2.5"/><rect x="238" y="24" width="5" height="16" rx="2.5"/><rect x="247" y="20" width="5" height="24" rx="2.5"/><rect x="256" y="14" width="5" height="36" rx="2.5"/><rect x="265" y="22" width="5" height="20" rx="2.5"/>
+    </g>
+    <g fill="#C9BFF0">
+      <rect x="274" y="26" width="5" height="12" rx="2.5"/><rect x="283" y="17" width="5" height="30" rx="2.5"/><rect x="292" y="21" width="5" height="22" rx="2.5"/><rect x="301" y="24" width="5" height="16" rx="2.5"/><rect x="310" y="19" width="5" height="26" rx="2.5"/><rect x="319" y="23" width="5" height="18" rx="2.5"/>
+    </g>
+    <g fill="#D9473A"><path d="M96 0h8v6l-4 3-4-3z"/><path d="M249 0h8v6l-4 3-4-3z"/></g>
+  </svg>
+
+  <section aria-label="Capture health" style="background: #fff; border: 1px solid #E9E2D6; border-radius: 20px; padding: 14px 16px; display: flex; flex-direction: column; gap: 10px">
+    <div style="display: flex; align-items: center; justify-content: space-between">
+      <span style="font-size: 14px; font-weight: 800">Capture health</span>
+      <span style="font-size: 12.5px; font-weight: 800; color: #2B7A57; background: #E3F2EA; padding: 3px 9px; border-radius: 999px">All good</span>
+    </div>
+    <div style="display: flex; justify-content: space-between; font-size: 13.5px"><span style="color: #5E5A6B">Microphone</span><strong>Built-in · connected</strong></div>
+    <div style="display: flex; justify-content: space-between; align-items: center; font-size: 13.5px"><span style="color: #5E5A6B">Input level</span><span style="display: inline-flex; align-items: center; gap: 8px"><span style="width: 90px; height: 6px; border-radius: 3px; background: #ECE5DA; display: block; overflow: hidden"><span style="display: block; width: 62%; height: 100%; background: #6A4FD6"></span></span><strong>Good</strong></span></div>
+    <div style="display: flex; justify-content: space-between; font-size: 13.5px"><span style="color: #5E5A6B">Screen</span><strong>Staying awake</strong></div>
+    <div style="display: flex; justify-content: space-between; font-size: 13.5px"><span style="color: #5E5A6B">Free space</span><strong>2.4 GB</strong></div>
+  </section>
+
+  <section aria-label="Moments" style="display: flex; flex-direction: column; gap: 10px">
+    <div style="display: flex; gap: 8px">
+      <button type="button" style="flex: 1; min-height: 44px; border-radius: 14px; border: 1px solid #E9E2D6; background: #fff; font-weight: 800; font-size: 14px; color: #1F1D2B; display: inline-flex; align-items: center; justify-content: center; gap: 6px"><svg width="16" height="16" viewBox="0 0 24 24" fill="#D9473A" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4z"/></svg>Key point</button>
+      <button type="button" style="flex: 1; min-height: 44px; border-radius: 14px; border: 1px solid #E9E2D6; background: #fff; font-weight: 800; font-size: 14px; color: #1F1D2B">Action</button>
+      <button type="button" style="flex: 1; min-height: 44px; border-radius: 14px; border: 1px solid #E9E2D6; background: #fff; font-weight: 800; font-size: 14px; color: #1F1D2B">Question</button>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 6px; font-size: 13.5px">
+      <div style="display: flex; gap: 10px; align-items: baseline"><span style="font-variant-numeric: tabular-nums; font-weight: 800; color: #4F38B5">38:04</span><span style="color: #1F1D2B">Action · Sam owns the pricing page</span></div>
+      <div style="display: flex; gap: 10px; align-items: baseline"><span style="font-variant-numeric: tabular-nums; font-weight: 800; color: #4F38B5">15:22</span><span style="color: #1F1D2B">Key point · Launch date confirmed</span></div>
+    </div>
+  </section>
+
+  <div style="margin-top: auto; display: flex; flex-direction: column; gap: 12px">
+    <div style="display: flex; gap: 12px">
+      <button type="button" style="flex: 1; min-height: 56px; border-radius: 18px; border: 1px solid #D6CDBF; background: #fff; font-weight: 800; font-size: 16px; color: #1F1D2B; display: inline-flex; align-items: center; justify-content: center; gap: 8px"><svg width="20" height="20" viewBox="0 0 24 24" fill="#1F1D2B" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>Pause</button>
+      <button type="button" style="flex: 1.4; min-height: 56px; border-radius: 18px; border: 0; background: #D9473A; color: #fff; font-weight: 800; font-size: 16px; display: inline-flex; align-items: center; justify-content: center; gap: 8px"><svg width="18" height="18" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><rect x="5" y="5" width="14" height="14" rx="2"/></svg>Stop &amp; save</button>
+    </div>
+    <p style="margin: 0; font-size: 12.5px; line-height: 1.5; color: #5E5A6B; text-align: center">Browsers can’t guarantee recording with the screen off. If capture stops, this screen says so immediately and keeps what was saved.</p>
+  </div>
+</div></div></div>
+<div class="device"><div class="device-label">03 · Chaptered notes</div><div class="frame"><div style="position: relative; width: 390px; height: 844px; box-sizing: border-box; overflow: hidden; background: #FAF7F2; color: #1F1D2B; font-family: 'Manrope', system-ui, sans-serif; padding: 20px 20px 0; display: flex; flex-direction: column; gap: 12px">
+
+  <header style="display: flex; align-items: center; gap: 10px">
+    <button type="button" aria-label="Back to library" style="flex: none; width: 44px; height: 44px; border-radius: 14px; border: 1px solid #E9E2D6; background: #fff; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1F1D2B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button>
+    <h1 style="margin: 0; flex: 1; min-width: 0; font-size: 18px; font-weight: 800; letter-spacing: -0.01em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">Weekly product sync</h1>
+    <button type="button" aria-label="Share notes" style="flex: none; width: 44px; height: 44px; border-radius: 14px; border: 1px solid #E9E2D6; background: #fff; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1F1D2B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="M8.2 10.9l7.6-3.8M8.2 13.1l7.6 3.8"/></svg></button>
+  </header>
+
+  <section aria-label="Playback" style="background: #fff; border: 1px solid #E9E2D6; border-radius: 20px; padding: 12px 14px; display: flex; align-items: center; gap: 12px">
+    <button type="button" aria-label="Play" style="flex: none; width: 48px; height: 48px; border-radius: 50%; border: 0; background: #6A4FD6; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></button>
+    <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px">
+      <div style="position: relative; height: 22px">
+        <div style="position: absolute; left: 0; right: 0; top: 9px; height: 4px; border-radius: 2px; background: #ECE5DA"></div>
+        <div style="position: absolute; left: 0; width: 34%; top: 9px; height: 4px; border-radius: 2px; background: #6A4FD6"></div>
+        <span style="position: absolute; left: 30%; top: 0; width: 2px; height: 22px; background: #fff"></span>
+        <span style="position: absolute; left: 61%; top: 0; width: 2px; height: 22px; background: #fff"></span>
+        <span style="position: absolute; left: calc(36% - 4px); top: 4px; width: 8px; height: 8px; border-radius: 50%; background: #D9473A"></span>
+        <span style="position: absolute; left: calc(90% - 4px); top: 4px; width: 8px; height: 8px; border-radius: 50%; background: #D9473A"></span>
+        <span style="position: absolute; left: calc(34% - 7px); top: 4px; width: 14px; height: 14px; border-radius: 50%; background: #fff; border: 3px solid #6A4FD6; box-sizing: border-box"></span>
+      </div>
+      <div style="display: flex; justify-content: space-between; font-size: 12px; font-weight: 700; color: #5E5A6B; font-variant-numeric: tabular-nums"><span>14:32</span><span>42:10</span></div>
+    </div>
+  </section>
+
+  <div style="display: flex; gap: 4px; background: #F1EBE0; border-radius: 999px; padding: 4px" role="tablist" aria-label="Recording content">
+    <button type="button" role="tab" aria-selected="true" style="flex: 1; min-height: 40px; border-radius: 999px; border: 0; background: #fff; font-weight: 800; font-size: 14px; color: #1F1D2B">Notes</button>
+    <button type="button" role="tab" aria-selected="false" style="flex: 1; min-height: 40px; border-radius: 999px; border: 0; background: transparent; font-weight: 700; font-size: 14px; color: #5E5A6B">Transcript</button>
+    <button type="button" role="tab" aria-selected="false" style="flex: 1; min-height: 40px; border-radius: 999px; border: 0; background: transparent; font-weight: 700; font-size: 14px; color: #5E5A6B">Moments · 3</button>
+  </div>
+
+  <p style="margin: 0; font-size: 12.5px; line-height: 1.45; color: #5E5A6B; display: flex; gap: 8px; align-items: flex-start"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4F38B5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 1px"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v5h1"/></svg>AI-generated from the transcript. Tap any time chip to hear the source before you rely on it.</p>
+
+  <section aria-label="Chapter 1" style="background: #fff; border: 1px solid #E9E2D6; border-radius: 20px; padding: 14px 16px; display: flex; flex-direction: column; gap: 10px">
+    <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 8px">
+      <h2 style="margin: 0; font-size: 16px; font-weight: 800">1 · Launch timeline</h2>
+      <span style="font-size: 12.5px; font-weight: 700; color: #6E6A7C; font-variant-numeric: tabular-nums">00:00 – 12:40</span>
+    </div>
+    <div style="display: flex; gap: 10px; align-items: flex-start">
+      <span style="flex: none; width: 7px; height: 7px; border-radius: 50%; background: #6A4FD6; margin-top: 8px"></span>
+      <p style="margin: 0; flex: 1; font-size: 14.5px; line-height: 1.45">Design review is done; engineering estimates the build at six weeks.</p>
+      <button type="button" style="flex: none; min-height: 32px; padding: 0 10px; border-radius: 999px; border: 0; background: #EEE9FC; color: #4F38B5; font-weight: 800; font-size: 12.5px; font-variant-numeric: tabular-nums">▶ 04:12</button>
+    </div>
+    <div style="display: flex; gap: 10px; align-items: flex-start">
+      <span style="flex: none; width: 7px; height: 7px; border-radius: 50%; background: #6A4FD6; margin-top: 8px"></span>
+      <p style="margin: 0; flex: 1; font-size: 14.5px; line-height: 1.45">Marketing needs final copy two weeks before launch.</p>
+      <button type="button" style="flex: none; min-height: 32px; padding: 0 10px; border-radius: 999px; border: 0; background: #EEE9FC; color: #4F38B5; font-weight: 800; font-size: 12.5px; font-variant-numeric: tabular-nums">▶ 09:47</button>
+    </div>
+  </section>
+
+  <section aria-label="Decisions" style="background: #fff; border: 1px solid #E9E2D6; border-radius: 20px; padding: 14px 16px; display: flex; flex-direction: column; gap: 10px">
+    <div style="display: flex; align-items: center; gap: 8px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2B7A57" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><h2 style="margin: 0; font-size: 16px; font-weight: 800">Decision</h2></div>
+    <div style="display: flex; gap: 10px; align-items: flex-start">
+      <p style="margin: 0; flex: 1; font-size: 14.5px; line-height: 1.45">Move the launch to May to protect quality.</p>
+      <button type="button" style="flex: none; min-height: 32px; padding: 0 10px; border-radius: 999px; border: 0; background: #EEE9FC; color: #4F38B5; font-weight: 800; font-size: 12.5px; font-variant-numeric: tabular-nums">▶ 15:22</button>
+    </div>
+  </section>
+
+  <section aria-label="Action items" style="background: #fff; border: 1px solid #E9E2D6; border-radius: 20px; padding: 14px 16px; display: flex; flex-direction: column; gap: 10px">
+    <h2 style="margin: 0; font-size: 16px; font-weight: 800">Action items</h2>
+    <label style="display: flex; gap: 12px; align-items: flex-start; min-height: 44px">
+      <input type="checkbox" style="width: 22px; height: 22px; margin: 2px 0 0; accent-color: #6A4FD6; flex: none">
+      <span style="flex: 1; min-width: 0"><span style="display: block; font-size: 14.5px; line-height: 1.4">Finish the pricing page</span><span style="display: block; font-size: 12.5px; color: #5E5A6B; margin-top: 2px">Sam · due Friday · ▶ 38:04</span></span>
+    </label>
+    <label style="display: flex; gap: 12px; align-items: flex-start; min-height: 44px">
+      <input type="checkbox" checked style="width: 22px; height: 22px; margin: 2px 0 0; accent-color: #6A4FD6; flex: none">
+      <span style="flex: 1; min-width: 0"><span style="display: block; font-size: 14.5px; line-height: 1.4; text-decoration: line-through; color: #6E6A7C">Send the recap to the team</span><span style="display: block; font-size: 12.5px; color: #5E5A6B; margin-top: 2px">You · ▶ 41:30</span></span>
+    </label>
+  </section>
+</div></div></div>
+<div class="device"><div class="device-label">04 · Ask your recordings</div><div class="frame"><div style="position: relative; width: 390px; height: 844px; box-sizing: border-box; overflow: hidden; background: #FAF7F2; color: #1F1D2B; font-family: 'Manrope', system-ui, sans-serif">
+
+  <div style="padding: 28px 20px 0; display: flex; flex-direction: column; gap: 14px">
+    <header>
+      <h1 style="margin: 0; font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: 40px; line-height: 1.05; letter-spacing: -0.01em">Ask your recordings</h1>
+      <p style="margin: 6px 0 0; font-size: 14px; line-height: 1.45; color: #5E5A6B">Answers come only from what was said in your library, with the source one tap away.</p>
+    </header>
+
+    <div style="display: flex; gap: 8px">
+      <button type="button" style="min-height: 40px; padding: 0 14px; border-radius: 999px; border: 1px solid #E9E2D6; background: #fff; font-weight: 700; font-size: 13.5px; color: #1F1D2B; display: inline-flex; align-items: center; gap: 6px">All recordings <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1F1D2B" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+      <button type="button" style="min-height: 40px; padding: 0 14px; border-radius: 999px; border: 1px solid #E9E2D6; background: #fff; font-weight: 700; font-size: 13.5px; color: #1F1D2B">Last 30 days</button>
+    </div>
+
+    <div style="align-self: flex-end; max-width: 86%; background: #6A4FD6; color: #fff; padding: 12px 16px; border-radius: 20px 20px 6px 20px; font-size: 15px; line-height: 1.4; font-weight: 600">What did we decide about launch timing?</div>
+
+    <article style="background: #fff; border: 1px solid #E9E2D6; border-radius: 20px 20px 20px 6px; padding: 16px; display: flex; flex-direction: column; gap: 12px">
+      <p style="margin: 0; font-size: 15px; line-height: 1.5">The launch moves to <strong>May</strong> so the team can finish the pricing page and protect quality. Marketing wants final copy two weeks before.</p>
+      <div style="display: flex; flex-direction: column; gap: 8px">
+        <div style="font-size: 12px; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; color: #6E6A7C">Sources</div>
+        <button type="button" style="text-align: left; border: 1px solid #E9E2D6; background: #FAF7F2; border-radius: 14px; padding: 10px 12px; display: flex; flex-direction: column; gap: 4px">
+          <span style="display: flex; justify-content: space-between; gap: 8px; font-size: 13px; font-weight: 800; color: #1F1D2B"><span>Weekly product sync</span><span style="color: #4F38B5; font-variant-numeric: tabular-nums">▶ 15:22</span></span>
+          <span style="font-size: 13px; line-height: 1.4; color: #5E5A6B">“…so we agreed to move the launch to May and use the time to finish pricing.”</span>
+        </button>
+        <button type="button" style="text-align: left; border: 1px solid #E9E2D6; background: #FAF7F2; border-radius: 14px; padding: 10px 12px; display: flex; flex-direction: column; gap: 4px">
+          <span style="display: flex; justify-content: space-between; gap: 8px; font-size: 13px; font-weight: 800; color: #1F1D2B"><span>Marketing check-in</span><span style="color: #4F38B5; font-variant-numeric: tabular-nums">▶ 06:40</span></span>
+          <span style="font-size: 13px; line-height: 1.4; color: #5E5A6B">“We need final copy two weeks before launch, whatever the date ends up being.”</span>
+        </button>
+      </div>
+    </article>
+
+    <div style="align-self: flex-end; max-width: 86%; background: #6A4FD6; color: #fff; padding: 12px 16px; border-radius: 20px 20px 6px 20px; font-size: 15px; line-height: 1.4; font-weight: 600">Who owns the budget review?</div>
+
+    <article style="background: #fff; border: 1px solid #E9E2D6; border-radius: 20px 20px 20px 6px; padding: 16px; display: flex; flex-direction: column; gap: 6px">
+      <p style="margin: 0; font-size: 15px; line-height: 1.5"><strong>I couldn’t find that.</strong> <span style="color: #5E5A6B">No one is named as owner of the budget review in the 14 recordings I searched.</span></p>
+    </article>
+  </div>
+
+  <div style="position: absolute; left: 0; right: 0; bottom: 84px; padding: 10px 16px; background: #FAF7F2; border-top: 1px solid #E9E2D6; display: flex; flex-direction: column; gap: 6px">
+    <div style="display: flex; gap: 8px; align-items: center">
+      <label for="ask-input" class="sr-only" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Ask a question</label>
+      <input id="ask-input" placeholder="Ask about your meetings and notes" style="flex: 1; min-width: 0; min-height: 48px; box-sizing: border-box; border: 1px solid #D6CDBF; background: #fff; border-radius: 999px; padding: 0 18px; font-size: 15px; color: #1F1D2B">
+      <button type="button" aria-label="Send question" style="flex: none; width: 48px; height: 48px; border-radius: 50%; border: 0; background: #6A4FD6; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+    </div>
+    <p style="margin: 0; text-align: center; font-size: 11.5px; color: #5E5A6B">AI can be wrong. Check the sources before you rely on an answer.</p>
+  </div>
+
+  <nav aria-label="Primary" style="position: absolute; left: 0; right: 0; bottom: 0; height: 84px; box-sizing: border-box; padding: 8px 12px 18px; background: #fff; border-top: 1px solid #E9E2D6; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); align-items: center">
+    <button type="button" style="border: 0; background: transparent; display: flex; flex-direction: column; align-items: center; gap: 3px; color: #6E6A7C; font-size: 12px; font-weight: 700; min-height: 48px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-8 9 8M5 10v10h14V10"/></svg>Home</button>
+    <button type="button" style="border: 0; background: transparent; display: flex; flex-direction: column; align-items: center; gap: 3px; color: #6E6A7C; font-size: 12px; font-weight: 700; min-height: 48px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5v14M9 5v14M14 7l5 12"/></svg>Library</button>
+    <button type="button" aria-label="Record" style="justify-self: center; width: 56px; height: 56px; margin-top: -22px; border-radius: 50%; border: 4px solid #FAF7F2; background: #6A4FD6; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></button>
+    <button type="button" style="border: 0; background: transparent; display: flex; flex-direction: column; align-items: center; gap: 3px; color: #4F38B5; font-size: 12px; font-weight: 800; min-height: 48px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>Ask</button>
+    <button type="button" style="border: 0; background: transparent; display: flex; flex-direction: column; align-items: center; gap: 3px; color: #6E6A7C; font-size: 12px; font-weight: 700; min-height: 48px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>You</button>
+  </nav>
+</div></div></div>
+<div class="device"><div class="device-label">05 · Trust center</div><div class="frame"><div style="position: relative; width: 390px; height: 844px; box-sizing: border-box; overflow: hidden; background: #FAF7F2; color: #1F1D2B; font-family: 'Manrope', system-ui, sans-serif">
+
+  <div style="padding: 26px 20px 0; display: flex; flex-direction: column; gap: 12px">
+    <header>
+      <h1 style="margin: 0; font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: 40px; line-height: 1.05; letter-spacing: -0.01em">Trust center</h1>
+      <p style="margin: 6px 0 0; font-size: 14px; line-height: 1.45; color: #5E5A6B">What stays on this device, what has left it, and how to take it back.</p>
+    </header>
+
+    <section aria-label="Where your recordings live" style="display: flex; gap: 10px">
+      <div style="flex: 1; background: #fff; border: 1px solid #E9E2D6; border-radius: 18px; padding: 12px 14px">
+        <div style="font-family: 'Instrument Serif', Georgia, serif; font-size: 34px; line-height: 1">11</div>
+        <div style="font-size: 12.5px; font-weight: 700; color: #5E5A6B; margin-top: 4px">only on this device</div>
+      </div>
+      <div style="flex: 1; background: #fff; border: 1px solid #E9E2D6; border-radius: 18px; padding: 12px 14px">
+        <div style="font-family: 'Instrument Serif', Georgia, serif; font-size: 34px; line-height: 1">3</div>
+        <div style="font-size: 12.5px; font-weight: 700; color: #5E5A6B; margin-top: 4px">in your private cloud</div>
+      </div>
+    </section>
+
+    <section aria-label="Consent" style="background: #fff; border: 1px solid #E9E2D6; border-radius: 20px; padding: 6px 16px; display: flex; flex-direction: column">
+      <div style="display: flex; align-items: center; gap: 12px; min-height: 64px">
+        <div style="flex: 1; min-width: 0">
+          <div style="font-size: 15px; font-weight: 800">Cloud processing</div>
+          <div style="font-size: 12.5px; color: #5E5A6B">Allowed since 2 Oct. Audio is uploaded only when you press Transcribe.</div>
+        </div>
+        <button type="button" role="switch" aria-checked="true" aria-label="Cloud processing" style="flex: none; width: 52px; height: 32px; border-radius: 999px; border: 0; background: #6A4FD6; position: relative"><span style="position: absolute; top: 3px; right: 3px; width: 26px; height: 26px; border-radius: 50%; background: #fff"></span></button>
+      </div>
+      <div style="height: 1px; background: #E9E2D6"></div>
+      <div style="display: flex; align-items: center; gap: 12px; min-height: 64px">
+        <div style="flex: 1; min-width: 0">
+          <div style="font-size: 15px; font-weight: 800">Consent reminder</div>
+          <div style="font-size: 12.5px; color: #5E5A6B">Show a reminder before each recording starts.</div>
+        </div>
+        <button type="button" role="switch" aria-checked="true" aria-label="Consent reminder" style="flex: none; width: 52px; height: 32px; border-radius: 999px; border: 0; background: #6A4FD6; position: relative"><span style="position: absolute; top: 3px; right: 3px; width: 26px; height: 26px; border-radius: 50%; background: #fff"></span></button>
+      </div>
+    </section>
+
+    <section aria-label="What has been sent" style="background: #fff; border: 1px solid #E9E2D6; border-radius: 20px; padding: 14px 16px; display: flex; flex-direction: column; gap: 10px">
+      <div style="display: flex; justify-content: space-between; align-items: baseline"><h2 style="margin: 0; font-size: 15px; font-weight: 800">What has left this device</h2><button type="button" style="border: 0; background: transparent; color: #4F38B5; font-weight: 800; font-size: 13px; min-height: 32px">Full log</button></div>
+      <div style="display: flex; flex-direction: column; gap: 2px">
+        <div style="font-size: 14px; font-weight: 700">Weekly product sync</div>
+        <div style="font-size: 12.5px; line-height: 1.4; color: #5E5A6B">Today, 2:55 PM · audio → speech-to-text provider · transcript → notes provider</div>
+      </div>
+      <div style="height: 1px; background: #E9E2D6"></div>
+      <div style="display: flex; flex-direction: column; gap: 2px">
+        <div style="font-size: 14px; font-weight: 700">Customer interview: Rivera</div>
+        <div style="font-size: 12.5px; line-height: 1.4; color: #5E5A6B">Yesterday, 5:12 PM · audio → speech-to-text provider · transcript → notes provider</div>
+      </div>
+    </section>
+
+    <section aria-label="Retention" style="background: #fff; border: 1px solid #E9E2D6; border-radius: 20px; padding: 14px 16px; display: flex; flex-direction: column; gap: 8px">
+      <label for="retention" style="font-size: 15px; font-weight: 800">Delete original audio</label>
+      <select id="retention" style="width: 100%; min-height: 46px; border: 1px solid #D6CDBF; border-radius: 14px; background: #FAF7F2; padding: 0 12px; font-size: 15px; font-weight: 600; color: #1F1D2B">
+        <option>30 days after notes are complete</option>
+      </select>
+      <div style="font-size: 12.5px; line-height: 1.4; color: #5E5A6B">Failed or unprocessed recordings are never deleted automatically.</div>
+    </section>
+
+    <div style="display: flex; gap: 10px">
+      <button type="button" style="flex: 1; min-height: 48px; border-radius: 14px; border: 1px solid #F0C4BE; background: #FCE9E6; color: #A3281C; font-weight: 800; font-size: 13.5px">Delete cloud audio</button>
+      <button type="button" style="flex: 1; min-height: 48px; border-radius: 14px; border: 1px solid #F0C4BE; background: #FCE9E6; color: #A3281C; font-weight: 800; font-size: 13.5px">Wipe this device</button>
+    </div>
+  </div>
+
+  <nav aria-label="Primary" style="position: absolute; left: 0; right: 0; bottom: 0; height: 84px; box-sizing: border-box; padding: 8px 12px 18px; background: #fff; border-top: 1px solid #E9E2D6; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); align-items: center">
+    <button type="button" style="border: 0; background: transparent; display: flex; flex-direction: column; align-items: center; gap: 3px; color: #6E6A7C; font-size: 12px; font-weight: 700; min-height: 48px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-8 9 8M5 10v10h14V10"/></svg>Home</button>
+    <button type="button" style="border: 0; background: transparent; display: flex; flex-direction: column; align-items: center; gap: 3px; color: #6E6A7C; font-size: 12px; font-weight: 700; min-height: 48px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5v14M9 5v14M14 7l5 12"/></svg>Library</button>
+    <button type="button" aria-label="Record" style="justify-self: center; width: 56px; height: 56px; margin-top: -22px; border-radius: 50%; border: 4px solid #FAF7F2; background: #6A4FD6; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></button>
+    <button type="button" style="border: 0; background: transparent; display: flex; flex-direction: column; align-items: center; gap: 3px; color: #6E6A7C; font-size: 12px; font-weight: 700; min-height: 48px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>Ask</button>
+    <button type="button" style="border: 0; background: transparent; display: flex; flex-direction: column; align-items: center; gap: 3px; color: #4F38B5; font-size: 12px; font-weight: 800; min-height: 48px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>You</button>
+  </nav>
+</div></div></div>
+</div>
+
+<div class="section-head" id="desktop">
+  <h2>Desktop workspace</h2>
+  <p>A three-pane view: library, audio-synced transcript, and notes with evidence links. Scroll sideways on narrow screens.</p>
+</div>
+<div class="desktop-wrap">
+  <div class="desktop-frame">
+<div style="width: 1280px; height: 820px; box-sizing: border-box; overflow: hidden; display: flex; background: #FAF7F2; color: #1F1D2B; font-family: 'Manrope', system-ui, sans-serif">
+
+  <aside aria-label="Primary" style="flex: none; width: 232px; box-sizing: border-box; padding: 24px 16px; border-right: 1px solid #E9E2D6; background: #F6F1E8; display: flex; flex-direction: column; gap: 6px">
+    <div style="display: flex; align-items: center; gap: 10px; padding: 0 8px 18px">
+      <div style="width: 36px; height: 36px; border-radius: 11px; background: #6A4FD6; display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FAF7F2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></div>
+      <span style="font-weight: 800; font-size: 18px; letter-spacing: -0.02em">NoteAI</span>
+    </div>
+    <button type="button" style="min-height: 44px; border-radius: 12px; border: 0; background: transparent; text-align: left; padding: 0 12px; font-size: 14.5px; font-weight: 700; color: #5E5A6B">Home</button>
+    <button type="button" aria-current="page" style="min-height: 44px; border-radius: 12px; border: 0; background: #EEE9FC; text-align: left; padding: 0 12px; font-size: 14.5px; font-weight: 800; color: #3C2A9A">Library</button>
+    <button type="button" style="min-height: 44px; border-radius: 12px; border: 0; background: transparent; text-align: left; padding: 0 12px; font-size: 14.5px; font-weight: 700; color: #5E5A6B">Ask</button>
+    <button type="button" style="min-height: 44px; border-radius: 12px; border: 0; background: transparent; text-align: left; padding: 0 12px; font-size: 14.5px; font-weight: 700; color: #5E5A6B">Trust center</button>
+    <button type="button" style="min-height: 44px; border-radius: 12px; border: 0; background: transparent; text-align: left; padding: 0 12px; font-size: 14.5px; font-weight: 700; color: #5E5A6B">Settings</button>
+
+    <div style="margin-top: 18px; padding: 0 12px; font-size: 12px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: #6E6A7C">Collections</div>
+    <div style="display: flex; justify-content: space-between; padding: 8px 12px; font-size: 14px; font-weight: 600"><span>Meetings</span><span style="color: #6E6A7C">9</span></div>
+    <div style="display: flex; justify-content: space-between; padding: 8px 12px; font-size: 14px; font-weight: 600"><span>Lectures</span><span style="color: #6E6A7C">3</span></div>
+    <div style="display: flex; justify-content: space-between; padding: 8px 12px; font-size: 14px; font-weight: 600"><span>Ideas</span><span style="color: #6E6A7C">2</span></div>
+
+    <div style="margin-top: auto; padding: 14px; background: #fff; border: 1px solid #E9E2D6; border-radius: 16px; display: flex; flex-direction: column; gap: 8px">
+      <div style="font-size: 13px; font-weight: 800">Storage on this device</div>
+      <div style="height: 6px; border-radius: 3px; background: #ECE5DA; overflow: hidden"><div style="width: 18%; height: 100%; background: #6A4FD6"></div></div>
+      <div style="font-size: 12px; color: #5E5A6B">412 MB used · stored locally</div>
+    </div>
+  </aside>
+
+  <section aria-label="Recordings" style="flex: none; width: 330px; box-sizing: border-box; padding: 24px 16px; border-right: 1px solid #E9E2D6; display: flex; flex-direction: column; gap: 14px">
+    <div style="display: flex; align-items: center; justify-content: space-between">
+      <h2 style="margin: 0; font-size: 20px; letter-spacing: -0.01em">All recordings</h2>
+      <button type="button" style="min-height: 40px; padding: 0 14px; border-radius: 999px; border: 0; background: #6A4FD6; color: #fff; font-weight: 800; font-size: 14px">New</button>
+    </div>
+    <div style="position: relative">
+      <label for="lib-search" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Search recordings</label>
+      <input id="lib-search" placeholder="Search titles and transcripts" style="width: 100%; box-sizing: border-box; min-height: 44px; border: 1px solid #E9E2D6; background: #fff; border-radius: 999px; padding: 0 16px; font-size: 14px">
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 8px">
+      <div style="background: #EEE9FC; border: 1px solid #D8CFF8; border-radius: 16px; padding: 12px 14px">
+        <div style="font-size: 14.5px; font-weight: 800">Weekly product sync</div>
+        <div style="font-size: 12.5px; color: #4F38B5; margin-top: 2px">Today · 42 min · Notes ready</div>
+      </div>
+      <div style="background: #fff; border: 1px solid #E9E2D6; border-radius: 16px; padding: 12px 14px">
+        <div style="font-size: 14.5px; font-weight: 800">Customer interview: Rivera</div>
+        <div style="font-size: 12.5px; color: #5E5A6B; margin-top: 2px">Yesterday · 18 min · Writing notes</div>
+      </div>
+      <div style="background: #fff; border: 1px solid #E9E2D6; border-radius: 16px; padding: 12px 14px">
+        <div style="font-size: 14.5px; font-weight: 800">Lecture 7: Memory &amp; attention</div>
+        <div style="font-size: 12.5px; color: #5E5A6B; margin-top: 2px">Mon · 1 h 04 · Notes ready</div>
+      </div>
+      <div style="background: #fff; border: 1px solid #E9E2D6; border-radius: 16px; padding: 12px 14px">
+        <div style="font-size: 14.5px; font-weight: 800">Voice note: onboarding idea</div>
+        <div style="font-size: 12.5px; color: #B53A2E; margin-top: 2px; font-weight: 700">Mon · 0:48 · Upload failed · audio safe</div>
+      </div>
+    </div>
+  </section>
+
+  <main style="flex: 1; min-width: 0; box-sizing: border-box; padding: 24px 28px 0; display: flex; flex-direction: column; gap: 16px">
+
+    <header style="display: flex; align-items: flex-start; justify-content: space-between; gap: 16px">
+      <div>
+        <h1 style="margin: 0; font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: 38px; line-height: 1.05; letter-spacing: -0.01em">Weekly product sync</h1>
+        <div style="font-size: 13.5px; color: #5E5A6B; margin-top: 4px">Today, 2:10 PM · 42:10 · 3 moments · on this device and in your cloud</div>
+      </div>
+      <div style="display: flex; gap: 8px">
+        <button type="button" style="min-height: 40px; padding: 0 14px; border-radius: 999px; border: 1px solid #D6CDBF; background: #fff; font-weight: 800; font-size: 13.5px">Download audio</button>
+        <button type="button" style="min-height: 40px; padding: 0 14px; border-radius: 999px; border: 0; background: #1F1D2B; color: #FAF7F2; font-weight: 800; font-size: 13.5px">Share notes</button>
+      </div>
+    </header>
+
+    <section aria-label="Playback" style="background: #fff; border: 1px solid #E9E2D6; border-radius: 20px; padding: 14px 16px; display: flex; align-items: center; gap: 14px">
+      <button type="button" aria-label="Play" style="flex: none; width: 48px; height: 48px; border-radius: 50%; border: 0; background: #6A4FD6; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></button>
+      <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px">
+        <div style="position: relative; height: 24px">
+          <div style="position: absolute; left: 0; right: 0; top: 10px; height: 4px; border-radius: 2px; background: #ECE5DA"></div>
+          <div style="position: absolute; left: 0; width: 34%; top: 10px; height: 4px; border-radius: 2px; background: #6A4FD6"></div>
+          <span style="position: absolute; left: 30%; top: 2px; width: 2px; height: 20px; background: #fff"></span>
+          <span style="position: absolute; left: 61%; top: 2px; width: 2px; height: 20px; background: #fff"></span>
+          <span style="position: absolute; left: calc(36% - 4px); top: 5px; width: 8px; height: 8px; border-radius: 50%; background: #D9473A"></span>
+          <span style="position: absolute; left: calc(90% - 4px); top: 5px; width: 8px; height: 8px; border-radius: 50%; background: #D9473A"></span>
+          <span style="position: absolute; left: calc(34% - 8px); top: 4px; width: 16px; height: 16px; border-radius: 50%; background: #fff; border: 3px solid #6A4FD6; box-sizing: border-box"></span>
+        </div>
+        <div style="display: flex; justify-content: space-between; font-size: 12px; font-weight: 700; color: #5E5A6B; font-variant-numeric: tabular-nums"><span>14:32</span><span>1 Launch · 2 Pricing · 3 Next steps</span><span>42:10</span></div>
+      </div>
+      <button type="button" style="flex: none; min-height: 40px; padding: 0 12px; border-radius: 999px; border: 1px solid #E9E2D6; background: #FAF7F2; font-weight: 800; font-size: 13px">1×</button>
+    </section>
+
+    <div style="display: flex; gap: 16px; flex: 1; min-height: 0">
+      <section aria-label="Transcript" style="flex: 1.15; min-width: 0; background: #fff; border: 1px solid #E9E2D6; border-radius: 20px; padding: 16px; display: flex; flex-direction: column; gap: 6px">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px">
+          <h2 style="margin: 0; font-size: 15px; font-weight: 800">Transcript</h2>
+          <span style="font-size: 12.5px; color: #5E5A6B">Follows playback</span>
+        </div>
+        <div style="display: grid; grid-template-columns: 52px 1fr; gap: 10px; padding: 8px 8px; font-size: 14px; line-height: 1.5"><span style="color: #4F38B5; font-weight: 800; font-variant-numeric: tabular-nums">14:20</span><span style="color: #5E5A6B">So the main question is whether we can hold the date.</span></div>
+        <div style="display: grid; grid-template-columns: 52px 1fr; gap: 10px; padding: 10px 8px; font-size: 14px; line-height: 1.5; background: #EEE9FC; border-radius: 12px"><span style="color: #4F38B5; font-weight: 800; font-variant-numeric: tabular-nums">14:32</span><span style="font-weight: 600">Engineering says six weeks is realistic if we cut the export feature.</span></div>
+        <div style="display: grid; grid-template-columns: 52px 1fr; gap: 10px; padding: 8px 8px; font-size: 14px; line-height: 1.5"><span style="color: #4F38B5; font-weight: 800; font-variant-numeric: tabular-nums">14:51</span><span style="color: #5E5A6B">I’d rather move the launch than ship half of it.</span></div>
+        <div style="display: grid; grid-template-columns: 52px 1fr; gap: 10px; padding: 8px 8px; font-size: 14px; line-height: 1.5"><span style="color: #4F38B5; font-weight: 800; font-variant-numeric: tabular-nums">15:08</span><span style="color: #5E5A6B">Agreed. Let’s say May, and use the time to finish pricing.</span></div>
+        <div style="display: grid; grid-template-columns: 52px 1fr; gap: 10px; padding: 8px 8px; font-size: 14px; line-height: 1.5"><span style="color: #4F38B5; font-weight: 800; font-variant-numeric: tabular-nums">15:22</span><span style="color: #5E5A6B"><span style="display: inline-block; font-size: 11.5px; font-weight: 800; color: #B53A2E; background: #FCE9E6; padding: 1px 7px; border-radius: 999px; margin-right: 6px">Moment</span>Okay, decision made: launch moves to May.</span></div>
+      </section>
+
+      <section aria-label="Notes" style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 12px">
+        <div style="background: #fff; border: 1px solid #E9E2D6; border-radius: 20px; padding: 14px 16px; display: flex; flex-direction: column; gap: 8px">
+          <h2 style="margin: 0; font-size: 15px; font-weight: 800">Summary</h2>
+          <p style="margin: 0; font-size: 14px; line-height: 1.55; color: #3A3747">The team agreed to move the launch to May to finish pricing and protect quality. Marketing needs copy two weeks ahead.</p>
+          <div style="font-size: 12px; color: #5E5A6B">AI-generated · check the linked moments</div>
+        </div>
+        <div style="background: #fff; border: 1px solid #E9E2D6; border-radius: 20px; padding: 14px 16px; display: flex; flex-direction: column; gap: 10px">
+          <h2 style="margin: 0; font-size: 15px; font-weight: 800">Action items</h2>
+          <label style="display: flex; gap: 10px; align-items: flex-start"><input type="checkbox" style="width: 20px; height: 20px; margin: 1px 0 0; accent-color: #6A4FD6"><span style="font-size: 14px; line-height: 1.4">Finish the pricing page <span style="color: #5E5A6B">· Sam · Fri</span></span></label>
+          <label style="display: flex; gap: 10px; align-items: flex-start"><input type="checkbox" checked style="width: 20px; height: 20px; margin: 1px 0 0; accent-color: #6A4FD6"><span style="font-size: 14px; line-height: 1.4; color: #6E6A7C; text-decoration: line-through">Send the recap to the team</span></label>
+        </div>
+        <div style="background: #1F1D2B; color: #FAF7F2; border-radius: 20px; padding: 14px 16px; display: flex; flex-direction: column; gap: 4px">
+          <div style="font-size: 12px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: #BDB6D6">Shortcuts</div>
+          <div style="font-size: 13px; line-height: 1.7">Space play · J / L ±10 s · M add moment · / search</div>
+        </div>
+      </section>
+    </div>
+  </main>
+</div>
+  </div>
+</div>
+
+<footer>
+  Static design proposal for NoteAI. NoteAI is a browser-only web app: reliable screen-off recording on mobile browsers cannot be guaranteed,
+  and these mockups show how the app would say so rather than hide it.
+</footer>
+
+</body>
+</html>

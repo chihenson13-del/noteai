@@ -1,0 +1,38 @@
+# Minimal Supabase CLI config. Create/link a project with:
+#   supabase init   (already done)  ->  supabase link --project-ref <ref>
+project_id = "noteai"
+
+[api]
+enabled = true
+
+[auth]
+enabled = true
+site_url = "http://localhost:5173"
+additional_redirect_urls = ["http://localhost:5173"]
+enable_signup = true
+
+[auth.email]
+enable_signup = true
+enable_confirmations = true
+
+[functions.process-recording]
+# The function authenticates the caller itself (auth.getUser) and enforces ownership,
+# which also works with projects that use asymmetric JWT signing keys.
+verify_jwt = false
+
+[functions.delete-account]
+verify_jwt = false
+
+# Public by design: the access code is the credential (rate limited and device bound inside).
+[functions.redeem-code]
+verify_jwt = false
+
+[functions.ask-recordings]
+verify_jwt = false
+
+[functions.share-notes]
+verify_jwt = false
+
+# Public by design: the unguessable share token is the credential.
+[functions.shared-notes]
+verify_jwt = false

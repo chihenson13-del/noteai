@@ -1,0 +1,30 @@
+{
+  "v": 3,
+  "createdOnFiles": { "v": 1, "at": "2026-10-13T16:00:00Z" },
+  "title": "NoteAI Premium Redesign Mockup",
+  "launch": { "view": "canvas" },
+  "pages": [],
+  "boards": {
+    "Main.dc.html": { "x": 0, "y": 0, "w": 1280, "h": 1560, "title": "00 Premium direction", "expand": "fill" },
+    "Home.dc.html": { "x": 0, "y": 1900, "w": 390, "h": 844, "title": "01 Home" },
+    "Record.dc.html": { "x": 470, "y": 1900, "w": 390, "h": 844, "title": "02 Live capture" },
+    "Notes.dc.html": { "x": 940, "y": 1900, "w": 390, "h": 844, "title": "03 Chaptered notes" },
+    "Ask.dc.html": { "x": 1410, "y": 1900, "w": 390, "h": 844, "title": "04 Ask your recordings" },
+    "Trust.dc.html": { "x": 1880, "y": 1900, "w": 390, "h": 844, "title": "05 Trust center" },
+    "Workspace.dc.html": { "x": 0, "y": 3044, "w": 1280, "h": 820, "title": "06 Desktop workspace" }
+  },
+  "order": [
+    "Main.dc.html",
+    "Home.dc.html",
+    "Record.dc.html",
+    "Notes.dc.html",
+    "Ask.dc.html",
+    "Trust.dc.html",
+    "Workspace.dc.html"
+  ],
+  "notes": {
+    "t1": { "x": 0, "y": -300, "text": "NoteAI: premium direction", "kind": "title1", "maxW": 1280 },
+    "t2": { "x": 0, "y": 1600, "text": "Mobile flows (390 × 844)", "kind": "title1", "maxW": 2270 },
+    "t3": { "x": 0, "y": 2780, "text": "Desktop workspace", "kind": "title1", "maxW": 1280 }
+  }
+}

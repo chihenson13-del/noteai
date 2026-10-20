@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>NoteAI live capture</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#FAF7F2}
+button,input{font-family:inherit}
+</style>
+</helmet>
+<div style="position: relative; width: 390px; height: 844px; box-sizing: border-box; overflow: hidden; background: #FAF7F2; color: #1F1D2B; font-family: 'Manrope', system-ui, sans-serif; padding: 24px 20px 20px; display: flex; flex-direction: column; gap: 14px">
+
+  <header style="display: flex; align-items: center; justify-content: space-between; gap: 12px">
+    <span style="display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: #B53A2E; background: #FCE9E6; padding: 7px 12px; border-radius: 999px"><span style="width: 9px; height: 9px; border-radius: 50%; background: #D9473A"></span>Recording</span>
+    <button type="button" aria-label="Minimise recorder" style="width: 44px; height: 44px; border-radius: 14px; border: 1px solid #E9E2D6; background: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1F1D2B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+  </header>
+
+  <div style="display: flex; flex-direction: column; gap: 4px">
+    <label for="title" style="font-size: 12.5px; font-weight: 700; color: #6E6A7C">Title</label>
+    <input id="title" value="Weekly product sync" style="width: 100%; box-sizing: border-box; min-height: 44px; border: 1px solid #E9E2D6; background: #fff; border-radius: 14px; padding: 0 14px; font-size: 17px; font-weight: 700; color: #1F1D2B">
+  </div>
+
+  <section aria-label="Elapsed time" style="text-align: center; display: flex; flex-direction: column; gap: 2px">
+    <div style="font-family: 'Instrument Serif', Georgia, serif; font-size: 88px; line-height: 1; letter-spacing: -0.02em">42:10</div>
+    <div style="font-size: 13px; font-weight: 700; color: #2B7A57">Saved to this device 0.8 s ago</div>
+  </section>
+
+  <svg viewBox="0 0 350 64" width="350" height="64" role="img" aria-label="Live waveform with two moments marked" style="display: block; margin: 0 auto">
+    <g fill="#6A4FD6">
+      <rect x="4" y="27" width="5" height="10" rx="2.5"/><rect x="13" y="23" width="5" height="18" rx="2.5"/><rect x="22" y="19" width="5" height="26" rx="2.5"/><rect x="31" y="25" width="5" height="14" rx="2.5"/><rect x="40" y="17" width="5" height="30" rx="2.5"/><rect x="49" y="21" width="5" height="22" rx="2.5"/><rect x="58" y="13" width="5" height="38" rx="2.5"/><rect x="67" y="18" width="5" height="28" rx="2.5"/><rect x="76" y="24" width="5" height="16" rx="2.5"/><rect x="85" y="15" width="5" height="34" rx="2.5"/><rect x="94" y="10" width="5" height="44" rx="2.5"/><rect x="103" y="17" width="5" height="30" rx="2.5"/><rect x="112" y="22" width="5" height="20" rx="2.5"/><rect x="121" y="14" width="5" height="36" rx="2.5"/><rect x="130" y="20" width="5" height="24" rx="2.5"/><rect x="139" y="26" width="5" height="12" rx="2.5"/><rect x="148" y="18" width="5" height="28" rx="2.5"/><rect x="157" y="12" width="5" height="40" rx="2.5"/><rect x="166" y="16" width="5" height="32" rx="2.5"/><rect x="175" y="23" width="5" height="18" rx="2.5"/><rect x="184" y="19" width="5" height="26" rx="2.5"/><rect x="193" y="25" width="5" height="14" rx="2.5"/><rect x="202" y="21" width="5" height="22" rx="2.5"/><rect x="211" y="15" width="5" height="34" rx="2.5"/><rect x="220" y="11" width="5" height="42" rx="2.5"/><rect x="229" y="18" width="5" height="28" rx="2.5"/><rect x="238" y="24" width="5" height="16" rx="2.5"/><rect x="247" y="20" width="5" height="24" rx="2.5"/><rect x="256" y="14" width="5" height="36" rx="2.5"/><rect x="265" y="22" width="5" height="20" rx="2.5"/>
+    </g>
+    <g fill="#C9BFF0">
+      <rect x="274" y="26" width="5" height="12" rx="2.5"/><rect x="283" y="17" width="5" height="30" rx="2.5"/><rect x="292" y="21" width="5" height="22" rx="2.5"/><rect x="301" y="24" width="5" height="16" rx="2.5"/><rect x="310" y="19" width="5" height="26" rx="2.5"/><rect x="319" y="23" width="5" height="18" rx="2.5"/>
+    </g>
+    <g fill="#D9473A"><path d="M96 0h8v6l-4 3-4-3z"/><path d="M249 0h8v6l-4 3-4-3z"/></g>
+  </svg>
+
+  <section aria-label="Capture health" style="background: #fff; border: 1px solid #E9E2D6; border-radius: 20px; padding: 14px 16px; display: flex; flex-direction: column; gap: 10px">
+    <div style="display: flex; align-items: center; justify-content: space-between">
+      <span style="font-size: 14px; font-weight: 800">Capture health</span>
+      <span style="font-size: 12.5px; font-weight: 800; color: #2B7A57; background: #E3F2EA; padding: 3px 9px; border-radius: 999px">All good</span>
+    </div>
+    <div style="display: flex; justify-content: space-between; font-size: 13.5px"><span style="color: #5E5A6B">Microphone</span><strong>Built-in · connected</strong></div>
+    <div style="display: flex; justify-content: space-between; align-items: center; font-size: 13.5px"><span style="color: #5E5A6B">Input level</span><span style="display: inline-flex; align-items: center; gap: 8px"><span style="width: 90px; height: 6px; border-radius: 3px; background: #ECE5DA; display: block; overflow: hidden"><span style="display: block; width: 62%; height: 100%; background: #6A4FD6"></span></span><strong>Good</strong></span></div>
+    <div style="display: flex; justify-content: space-between; font-size: 13.5px"><span style="color: #5E5A6B">Screen</span><strong>Staying awake</strong></div>
+    <div style="display: flex; justify-content: space-between; font-size: 13.5px"><span style="color: #5E5A6B">Free space</span><strong>2.4 GB</strong></div>
+  </section>
+
+  <section aria-label="Moments" style="display: flex; flex-direction: column; gap: 10px">
+    <div style="display: flex; gap: 8px">
+      <button type="button" style="flex: 1; min-height: 44px; border-radius: 14px; border: 1px solid #E9E2D6; background: #fff; font-weight: 800; font-size: 14px; color: #1F1D2B; display: inline-flex; align-items: center; justify-content: center; gap: 6px"><svg width="16" height="16" viewBox="0 0 24 24" fill="#D9473A" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4z"/></svg>Key point</button>
+      <button type="button" style="flex: 1; min-height: 44px; border-radius: 14px; border: 1px solid #E9E2D6; background: #fff; font-weight: 800; font-size: 14px; color: #1F1D2B">Action</button>
+      <button type="button" style="flex: 1; min-height: 44px; border-radius: 14px; border: 1px solid #E9E2D6; background: #fff; font-weight: 800; font-size: 14px; color: #1F1D2B">Question</button>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 6px; font-size: 13.5px">
+      <div style="display: flex; gap: 10px; align-items: baseline"><span style="font-variant-numeric: tabular-nums; font-weight: 800; color: #4F38B5">38:04</span><span style="color: #1F1D2B">Action · Sam owns the pricing page</span></div>
+      <div style="display: flex; gap: 10px; align-items: baseline"><span style="font-variant-numeric: tabular-nums; font-weight: 800; color: #4F38B5">15:22</span><span style="color: #1F1D2B">Key point · Launch date confirmed</span></div>
+    </div>
+  </section>
+
+  <div style="margin-top: auto; display: flex; flex-direction: column; gap: 12px">
+    <div style="display: flex; gap: 12px">
+      <button type="button" style="flex: 1; min-height: 56px; border-radius: 18px; border: 1px solid #D6CDBF; background: #fff; font-weight: 800; font-size: 16px; color: #1F1D2B; display: inline-flex; align-items: center; justify-content: center; gap: 8px"><svg width="20" height="20" viewBox="0 0 24 24" fill="#1F1D2B" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>Pause</button>
+      <button type="button" style="flex: 1.4; min-height: 56px; border-radius: 18px; border: 0; background: #D9473A; color: #fff; font-weight: 800; font-size: 16px; display: inline-flex; align-items: center; justify-content: center; gap: 8px"><svg width="18" height="18" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><rect x="5" y="5" width="14" height="14" rx="2"/></svg>Stop &amp; save</button>
+    </div>
+    <p style="margin: 0; font-size: 12.5px; line-height: 1.5; color: #5E5A6B; text-align: center">Browsers can’t guarantee recording with the screen off. If capture stops, this screen says so immediately and keeps what was saved.</p>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

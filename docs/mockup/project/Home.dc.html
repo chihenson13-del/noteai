@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>NoteAI home, redesigned</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#FAF7F2}
+button{font-family:inherit}
+</style>
+</helmet>
+<div style="position: relative; width: 390px; height: 844px; box-sizing: border-box; overflow: hidden; background: #FAF7F2; color: #1F1D2B; font-family: 'Manrope', system-ui, sans-serif">
+
+  <div style="padding: 28px 20px 0; display: flex; flex-direction: column; gap: 16px">
+
+    <header style="display: flex; align-items: flex-end; justify-content: space-between; gap: 12px">
+      <div>
+        <div style="font-size: 13px; font-weight: 600; color: #6E6A7C">Tuesday, 13 October</div>
+        <h1 style="margin: 2px 0 0; font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: 38px; line-height: 1.05; letter-spacing: -0.01em">Good afternoon</h1>
+      </div>
+      <button type="button" aria-label="Search recordings" style="width: 44px; height: 44px; border-radius: 14px; border: 1px solid #E9E2D6; background: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1F1D2B" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+      </button>
+    </header>
+
+    <section aria-label="Start a recording" style="background: #1F1D2B; color: #FAF7F2; border-radius: 26px; padding: 20px; display: flex; flex-direction: column; gap: 16px">
+      <div style="display: flex; align-items: center; gap: 14px">
+        <button type="button" aria-label="Start recording" style="flex: none; width: 64px; height: 64px; border-radius: 50%; border: 0; background: #6A4FD6; display: flex; align-items: center; justify-content: center; cursor: pointer">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>
+        </button>
+        <div style="min-width: 0">
+          <div style="font-size: 20px; font-weight: 800; letter-spacing: -0.01em">Start recording</div>
+          <div style="font-size: 13.5px; color: #D8D3E6; margin-top: 2px">Standard quality · fits about 109 min</div>
+        </div>
+      </div>
+      <div style="display: flex; gap: 8px; flex-wrap: wrap">
+        <span style="display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; font-weight: 700; padding: 6px 10px; border-radius: 999px; background: rgba(250,247,242,0.12)"><span style="width: 7px; height: 7px; border-radius: 50%; background: #7FD4A5"></span>Mic ready</span>
+        <span style="display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; font-weight: 700; padding: 6px 10px; border-radius: 999px; background: rgba(250,247,242,0.12)"><span style="width: 7px; height: 7px; border-radius: 50%; background: #7FD4A5"></span>2.4 GB free</span>
+        <span style="display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; font-weight: 700; padding: 6px 10px; border-radius: 999px; background: rgba(250,247,242,0.12)"><span style="width: 7px; height: 7px; border-radius: 50%; background: #F2B84B"></span>Keep tab in front</span>
+      </div>
+    </section>
+
+    <section aria-label="Needs attention" style="background: #FBF0D9; border-radius: 20px; padding: 14px 16px; display: flex; align-items: center; gap: 12px">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#8F5A0B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="M12 3l10 18H2z"/><path d="M12 10v5M12 18h.01"/></svg>
+      <div style="flex: 1; min-width: 0">
+        <div style="font-size: 14.5px; font-weight: 800; color: #5E3A05">1 recording needs attention</div>
+        <div style="font-size: 13px; color: #6B4A12">Upload failed. Audio is safe on this device.</div>
+      </div>
+      <button type="button" style="flex: none; min-height: 44px; padding: 0 14px; border-radius: 999px; border: 0; background: #5E3A05; color: #FBF0D9; font-weight: 800; font-size: 14px; cursor: pointer">Retry</button>
+    </section>
+
+    <section style="display: flex; flex-direction: column; gap: 12px">
+      <div style="display: flex; gap: 8px; overflow: hidden">
+        <button type="button" style="flex: none; min-height: 40px; padding: 0 16px; border-radius: 999px; border: 0; background: #1F1D2B; color: #FAF7F2; font-weight: 700; font-size: 14px">All</button>
+        <button type="button" style="flex: none; min-height: 40px; padding: 0 16px; border-radius: 999px; border: 1px solid #E9E2D6; background: #fff; font-weight: 700; font-size: 14px; color: #1F1D2B">Meetings</button>
+        <button type="button" style="flex: none; min-height: 40px; padding: 0 16px; border-radius: 999px; border: 1px solid #E9E2D6; background: #fff; font-weight: 700; font-size: 14px; color: #1F1D2B">Lectures</button>
+        <button type="button" style="flex: none; min-height: 40px; padding: 0 16px; border-radius: 999px; border: 1px solid #E9E2D6; background: #fff; font-weight: 700; font-size: 14px; color: #1F1D2B">Ideas</button>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 10px">
+        <div style="display: flex; align-items: center; gap: 12px; background: #fff; border: 1px solid #E9E2D6; border-radius: 20px; padding: 12px 14px">
+          <div style="flex: none; width: 44px; height: 44px; border-radius: 14px; background: #EEE9FC; display: flex; align-items: center; justify-content: center">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="#4F38B5" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+          <div style="flex: 1; min-width: 0">
+            <div style="font-size: 15px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">Weekly product sync</div>
+            <div style="font-size: 13px; color: #6E6A7C">Today, 2:10 PM · 42 min · 3 moments</div>
+          </div>
+          <span style="flex: none; font-size: 12px; font-weight: 800; color: #2B7A57; background: #E3F2EA; padding: 4px 9px; border-radius: 999px">Notes ready</span>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 12px; background: #fff; border: 1px solid #E9E2D6; border-radius: 20px; padding: 12px 14px">
+          <div style="flex: none; width: 44px; height: 44px; border-radius: 14px; background: #EEE9FC; display: flex; align-items: center; justify-content: center">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="#4F38B5" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+          <div style="flex: 1; min-width: 0">
+            <div style="font-size: 15px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">Customer interview: Rivera</div>
+            <div style="font-size: 13px; color: #6E6A7C">Yesterday · 18 min · 2 moments</div>
+          </div>
+          <span style="flex: none; font-size: 12px; font-weight: 800; color: #4F38B5; background: #EEE9FC; padding: 4px 9px; border-radius: 999px">Writing notes</span>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 12px; background: #fff; border: 1px solid #E9E2D6; border-radius: 20px; padding: 12px 14px">
+          <div style="flex: none; width: 44px; height: 44px; border-radius: 14px; background: #FCE9E6; display: flex; align-items: center; justify-content: center">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#B53A2E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>
+          </div>
+          <div style="flex: 1; min-width: 0">
+            <div style="font-size: 15px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">Voice note: onboarding idea</div>
+            <div style="font-size: 13px; color: #6E6A7C">Mon · 0:48 · on this device</div>
+          </div>
+          <span style="flex: none; font-size: 12px; font-weight: 800; color: #B53A2E; background: #FCE9E6; padding: 4px 9px; border-radius: 999px">Upload failed</span>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <nav aria-label="Primary" style="position: absolute; left: 0; right: 0; bottom: 0; height: 84px; box-sizing: border-box; padding: 8px 12px 18px; background: #fff; border-top: 1px solid #E9E2D6; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); align-items: center">
+    <button type="button" style="border: 0; background: transparent; display: flex; flex-direction: column; align-items: center; gap: 3px; color: #4F38B5; font-size: 12px; font-weight: 800; min-height: 48px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-8 9 8M5 10v10h14V10"/></svg>Home</button>
+    <button type="button" style="border: 0; background: transparent; display: flex; flex-direction: column; align-items: center; gap: 3px; color: #6E6A7C; font-size: 12px; font-weight: 700; min-height: 48px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5v14M9 5v14M14 7l5 12"/></svg>Library</button>
+    <button type="button" aria-label="Record" style="justify-self: center; width: 56px; height: 56px; margin-top: -22px; border-radius: 50%; border: 4px solid #FAF7F2; background: #6A4FD6; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></button>
+    <button type="button" style="border: 0; background: transparent; display: flex; flex-direction: column; align-items: center; gap: 3px; color: #6E6A7C; font-size: 12px; font-weight: 700; min-height: 48px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>Ask</button>
+    <button type="button" style="border: 0; background: transparent; display: flex; flex-direction: column; align-items: center; gap: 3px; color: #6E6A7C; font-size: 12px; font-weight: 700; min-height: 48px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>You</button>
+  </nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>
